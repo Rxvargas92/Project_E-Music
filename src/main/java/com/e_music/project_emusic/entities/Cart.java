@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Cart extends Base {
 
+    //Comentario random
     @Column(name = "paymentMethod")
     private String payment_method;
 
