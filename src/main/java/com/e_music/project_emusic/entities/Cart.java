@@ -18,20 +18,20 @@ import java.util.List;
 public class Cart extends Base {
 
     @Column(name = "paymentMethod")
-    String payment_method;
+    private String payment_method;
 
     @Column(name = "total_price")
-    Double total_price;
+    private Double total_price;
 
     @Column( name = "active")
-    boolean active;
+    private boolean active;
 
     @OneToOne( fetch = FetchType.EAGER )
     @JoinColumn( name = "fk_user", nullable = false)
-    User user;
+    private User user;
 
     @OneToMany( fetch = FetchType.EAGER )
     @JoinColumn( name = "fk_instrument", nullable = false)
-    List<Instrument> instruments;
+    private List<Instrument> instruments;
 
 }
