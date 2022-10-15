@@ -1,6 +1,6 @@
 package com.e_music.project_emusic.controllers;
 
-import com.e_music.project_emusic.entities.Base;
+import com.e_music.project_emusic.entities.abstractions.Base;
 import com.e_music.project_emusic.services.ServiceBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,12 +1,16 @@
 package com.e_music.project_emusic.entities;
 
-import lombok.*;
-import org.hibernate.envers.Audited;
-
+import com.e_music.project_emusic.entities.abstractions.Base;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.envers.Audited;
 
 @Entity
 @Table(name = "CATEGORY")
@@ -16,12 +20,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Category extends Base{
+public class Category extends Base {
 
-    private String name;
-    private boolean active = true;
+  private String name;
+  private boolean active = true;
 
-    @OneToMany(mappedBy = "category")
-    private List<Instrument> instruments;
+  @OneToMany(mappedBy = "category")
+  private List<Instrument> instruments;
 
 }
