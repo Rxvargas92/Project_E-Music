@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/instruments")
+@RequestMapping(path = "/emusic/instrument")
 public class InstrumentController extends BaseControllerImpl< Instrument, ServiceInstrumentImpl >{
 
 }
