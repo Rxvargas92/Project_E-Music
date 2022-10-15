@@ -2,12 +2,14 @@ package com.e_music.project_emusic.entities;
 
 import lombok.*;
 import com.e_music.project_emusic.entities.User;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table ( name = "CART" )
+@Audited
 @Getter
 @Setter
 @Builder

@@ -1,6 +1,7 @@
 package com.e_music.project_emusic.entities;
 
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "BRAND")
+@Audited
 @Getter
 @Setter
 @Builder

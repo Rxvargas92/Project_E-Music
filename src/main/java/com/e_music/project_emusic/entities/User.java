@@ -1,11 +1,13 @@
 package com.e_music.project_emusic.entities;
 
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
 @Entity
 @Table ( name = "USER" )
+@Audited
 @Getter
 @Setter
 @NoArgsConstructor
