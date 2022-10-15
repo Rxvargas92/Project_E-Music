@@ -1,14 +1,21 @@
 package com.e_music.project_emusic.entities;
 
-import lombok.*;
-import com.e_music.project_emusic.entities.User;
+import com.e_music.project_emusic.entities.abstractions.Base;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.*;
-import java.util.List;
-
 @Entity
-@Table ( name = "CART" )
+@Table(name = "CART")
 @Audited
 @Getter
 @Setter
@@ -17,22 +24,17 @@ import java.util.List;
 @NoArgsConstructor
 public class Cart extends Base {
 
-    //Comentario random
-    @Column(name = "paymentMethod")
-    private String payment_method;
+  @Column(name = "paymentMethod")
+  private String payment_method;
 
-    @Column(name = "total_price")
-    private Double total_price;
+  @Column(name = "total_price")
+  private Double total_price;
 
-    @Column( name = "active")
-    private boolean active;
+  @Column(name = "active")
+  private boolean active;
 
-    @OneToOne( fetch = FetchType.EAGER )
-    @JoinColumn( name = "fk_user", nullable = false)
-    private User user;
-
-    @OneToMany( fetch = FetchType.EAGER )
-    @JoinColumn( name = "fk_instrument", nullable = false)
-    private List<Instrument> instruments;
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "fk_user", nullable = false)
+  private User user;
 
 }
