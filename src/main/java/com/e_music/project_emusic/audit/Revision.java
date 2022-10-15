@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
@@ -24,7 +26,8 @@ import lombok.Data;
 @Entity
 @Table(name = "REVISION_INFO")
 @RevisionEntity(CustomRevisionListener.class)
-@Data
+@Getter
+@Setter
 public class Revision {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "revision_seq")
