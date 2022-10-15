@@ -18,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Category extends Base{
 
-    String name;
-    boolean active = true;
+    private String name;
+    private boolean active = true;
 
     @OneToMany(mappedBy = "category")
-    List<Instrument> instruments;
+    private List<Instrument> instruments;
 
 }

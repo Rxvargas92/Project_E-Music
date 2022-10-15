@@ -16,33 +16,33 @@ import javax.persistence.*;
 public class Instrument extends Base {
 
     @Column ( name = "active" )
-    boolean active = true;
+    private boolean active = true;
 
     @Column ( name = "name" )
-    String name;
+    private String name;
 
     @Column ( name = "price" )
-    Double price;
+    private Double price;
 
     @Column ( name = "stock" )
-    Integer stock;
+    private Integer stock;
 
     @Column ( name = "pathImage" )
-    String pathImage;
+    private String pathImage;
 
     @Column ( name = "description" )
-    String description;
+    private String description;
 
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name = "fk_cart", nullable = false )
-    Cart cart;
+    private Cart cart;
 
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name = "fk_brand", nullable = false )
-    Brand brand;
+    private Brand brand;
 
     @ManyToOne ( fetch = FetchType.EAGER )
     @JoinColumn ( name = "fk_category", nullable = false )
-    Category category;
+    private Category category;
 
 }
