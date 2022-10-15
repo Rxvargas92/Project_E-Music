@@ -1,7 +1,6 @@
 package com.e_music.project_emusic.controllers;
 
-import com.e_music.project_emusic.entities.Base;
-import org.springframework.data.domain.Pageable;
+import com.e_music.project_emusic.entities.abstractions.Base;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
