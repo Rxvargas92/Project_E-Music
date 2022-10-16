@@ -3,19 +3,23 @@ package com.e_music.project_emusic.entities;
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import javax.persistence.*;
 
+
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
+
+import javax.persistence.*;
+
+
 @Entity
 @Table(name = "INSTRUMENT")
 @Audited
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -42,7 +46,7 @@ public class Instrument extends Base {
 
   @OneToOne(mappedBy = "instrument")
   private Cart cart;
-
+  
   @JsonIgnore
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "fk_brand", nullable = false)
