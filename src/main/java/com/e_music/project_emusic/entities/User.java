@@ -10,6 +10,7 @@ import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "USER")
 @Audited
@@ -42,7 +43,5 @@ public class User extends Base {
 
   @OneToOne(mappedBy = "user")
   private Cart cart;
-
-
 
 }
