@@ -37,4 +37,7 @@ public class Cart extends Base {
   @JoinColumn(name = "fk_user", nullable = false)
   private User user;
 
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "fk_instrument", nullable = false)
+  private Instrument instrument;
 }
