@@ -8,16 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
-
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.List;
 
 @Entity
 @Table(name = "BRAND")
@@ -34,6 +31,7 @@ public class  Brand extends Base {
     private boolean active = true;
 
     @OneToMany(mappedBy = "brand")
+    @JsonManagedReference(value = "brand-instruments")
     private List<Instrument> instruments;
 
 }

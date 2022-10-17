@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +36,7 @@ public class Category extends Base {
   private boolean active = true;
 
   @OneToMany(mappedBy = "category")
+  @JsonManagedReference(value = "category-instruments")
   private List<Instrument> instruments;
 
 }
