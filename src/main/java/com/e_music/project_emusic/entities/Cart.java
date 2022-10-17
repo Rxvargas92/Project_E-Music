@@ -1,6 +1,7 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,13 +30,14 @@ public class Cart extends Base {
 
 
   @OneToOne(fetch = FetchType.EAGER)
+  @JsonManagedReference
   @JoinColumn(name = "fk_user", nullable = false)
   private User user;
 
 
   @OneToOne(fetch = FetchType.EAGER)
+  @JsonManagedReference
   @JoinColumn(name = "fk_instrument", nullable = false)
   private Instrument instrument;
-
 
 }

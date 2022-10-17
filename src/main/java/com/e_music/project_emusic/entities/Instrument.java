@@ -1,12 +1,14 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 import javax.persistence.*;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +17,7 @@ import org.hibernate.envers.Audited;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -45,15 +48,18 @@ public class Instrument extends Base {
   private String description;
 
   @OneToOne(mappedBy = "instrument")
+  @JsonBackReference
   private Cart cart;
   
-  @JsonIgnore
+
   @ManyToOne(fetch = FetchType.EAGER)
+  @JsonBackReference(value = "brand-instruments")
   @JoinColumn(name = "fk_brand", nullable = false)
   private Brand brand;
 
-  @JsonIgnore
+
   @ManyToOne(fetch = FetchType.EAGER)
+  @JsonBackReference(value = "category-instruments")
   @JoinColumn(name = "fk_category", nullable = false)
   private Category category;
 

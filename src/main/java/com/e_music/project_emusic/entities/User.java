@@ -1,7 +1,9 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,13 +37,14 @@ public class User extends Base {
   @Column(name = "active")
   private boolean active = true;
 
-  @JsonIgnore
-  @ManyToOne(fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER)
+  @JsonManagedReference
   @JoinColumn(name = "fk_address", nullable = false)
   private Address address;
 
 
   @OneToOne(mappedBy = "user")
+  @JsonBackReference
   private Cart cart;
 
 }

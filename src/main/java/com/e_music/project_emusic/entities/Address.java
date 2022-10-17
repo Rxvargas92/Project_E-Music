@@ -1,16 +1,14 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -40,7 +38,8 @@ public class Address extends Base {
     @Column ( name = "active" )
     private boolean active = true;
 
-    @OneToMany ( mappedBy = "address" )
-    private List<User> users;
+    @OneToOne( mappedBy = "address" )
+    @JsonBackReference
+    private User user;
 
 }
