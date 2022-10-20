@@ -37,6 +37,9 @@ public class User extends Base {
   @Column(name = "active")
   private boolean active = true;
 
+  @Column(name = "password")
+  private String password;
+
   @OneToOne(fetch = FetchType.EAGER)
   @JsonManagedReference
   @JoinColumn(name = "fk_address", nullable = false)

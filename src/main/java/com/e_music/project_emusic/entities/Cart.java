@@ -19,7 +19,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Cart extends Base {
 
-  @Column(name = "paymentMethod")
+  @Column(name = "payment_method")
   private String payment_method;
 
   @Column(name = "total_price")
