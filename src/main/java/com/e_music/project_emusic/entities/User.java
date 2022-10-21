@@ -2,7 +2,6 @@ package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "userId"))
 @Audited
 @Getter
 @Setter
@@ -36,6 +35,9 @@ public class User extends Base {
 
   @Column(name = "active")
   private boolean active = true;
+
+  @Column(name = "userId")
+  private String userId;
 
   @Column(name = "password")
   private String password;
