@@ -17,12 +17,13 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "USER")
 @Audited
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class User extends Base {
 
   @Column(name = "name")
@@ -34,13 +35,10 @@ public class User extends Base {
   @Column(name = "dni")
   private Integer dni;
 
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-          name = "users_roles",
-          joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
-          inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
-  )
-  private Collection<Rol> roles;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JsonBackReference(value = "rol_users")
+  @JoinColumn(name = "fk_rol", nullable = false)
+  private Rol rol;
 
   @Column(name = "active")
   private boolean active = true;

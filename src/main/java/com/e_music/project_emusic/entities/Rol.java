@@ -1,7 +1,9 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +26,8 @@ public class Rol extends Base {
     @Column(name = "type")
     private String type;
 
-    @ManyToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "rol")
+    @JsonManagedReference(value = "rol_users")
     private Collection<User> users;
 
 }
