@@ -15,8 +15,7 @@
 	<description>Project_E-Music</description>
 	<properties>
 		<java.version>17</java.version>
-		<springframework.version>5.7.4</springframework.version>
-		<springsecutiry.version>5.7.4</springsecutiry.version>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,17 +83,7 @@
 		</dependency>
 
 		<!-- Dependencias de Seguridad -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${springsecutiry.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${springsecutiry.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>

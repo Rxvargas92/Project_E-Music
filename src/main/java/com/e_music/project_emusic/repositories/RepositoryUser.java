@@ -5,5 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositoryUser extends RepositoryBase<User, Long> {
-    User findByUserId(String name);
 }

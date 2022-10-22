@@ -13,7 +13,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "userId"))
+@Table(name = "USER")
 @Audited
 @Getter
 @Setter
