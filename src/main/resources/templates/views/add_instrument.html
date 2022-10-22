@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <title>Details</title>
+</head>
+<body>
+<nav th:replace="components/navbar :: nav_bar"></nav>
+
+<div class="container-fluid">
+  <div class="d-flex align-items-center">
+    <div class="col justify-content-center">
+      <div style="
+  border: 1px solid #21130D;
+  border-radius: 4px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 400px;
+  width: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+">
+
+        <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600; margin: auto;">Add a image</button>
+
+      </div>
+    </div>
+    <div class="col py-5">
+      <form>
+        <div class="form-group">
+          <label for="Name"><b>NAME: </b></label>
+          <input type="password" class="form-control" id="Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="category"><b>CATEGORY: </b></label>
+          <input type="password" class="form-control" id="category" placeholder="Category">
+        </div>
+        <div class="form-group">
+          <label for="price"><b>PRICE: </b></label>
+          <input type="password" class="form-control" id="price" placeholder="Price">
+        </div>
+        <div class="form-group">
+          <label for="description"><b>DESCRIPTION: </b></label>
+          <input type="password" class="form-control" id="description" placeholder="Description">
+        </div>
+        <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest form</button>
+        <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<nav th:replace="components/footer :: _footer"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+</body>
+</html>

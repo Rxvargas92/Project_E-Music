@@ -32,4 +32,28 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @GetMapping (value = "/details")
+    public ModelAndView details( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/details.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping (value = "/add_instrument")
+    public ModelAndView add_instrument( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/add_instrument.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
 }
