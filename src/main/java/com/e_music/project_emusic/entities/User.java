@@ -2,7 +2,9 @@ package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +12,7 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -31,11 +34,13 @@ public class User extends Base {
   @Column(name = "dni")
   private Integer dni;
 
-  @OneToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "users_rols",
-  joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-  inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
-  private List<Rol> rols;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "users_roles",
+          joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
+  )
+  private Collection<Rol> roles;
 
   @Column(name = "active")
   private boolean active = true;
