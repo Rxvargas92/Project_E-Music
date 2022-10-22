@@ -10,10 +10,11 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USER", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @Audited
 @Getter
 @Setter
@@ -30,14 +31,17 @@ public class User extends Base {
   @Column(name = "dni")
   private Integer dni;
 
-  @Column(name = "admin")
-  private boolean admin;
+  @OneToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "users_rols",
+  joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+  inverseJoinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"))
+  private List<Rol> rols;
 
   @Column(name = "active")
   private boolean active = true;
 
-  @Column(name = "userId")
-  private String userId;
+  @Column(name = "email")
+  private String email;
 
   @Column(name = "password")
   private String password;
