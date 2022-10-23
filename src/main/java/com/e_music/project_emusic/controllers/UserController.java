@@ -40,4 +40,16 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         return modelAndView;
     }
 
+    @GetMapping (value = "/admin_menu")
+    public ModelAndView admin_menu( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/admin_menu.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
 }
