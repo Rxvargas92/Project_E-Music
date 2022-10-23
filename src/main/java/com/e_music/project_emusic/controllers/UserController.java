@@ -52,4 +52,16 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         return modelAndView;
     }
 
+    @GetMapping (value = "/about")
+    public ModelAndView about( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/about.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
 }
