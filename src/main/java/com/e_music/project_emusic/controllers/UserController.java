@@ -28,4 +28,16 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         return modelAndView;
     }
 
+    @GetMapping (value = "/login")
+    public ModelAndView login( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/login.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
 }
