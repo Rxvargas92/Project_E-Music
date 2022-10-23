@@ -56,4 +56,16 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @GetMapping (value = "/crud")
+    public ModelAndView crud( Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            modelAndView.setViewName("views/crud.html");
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
 }
