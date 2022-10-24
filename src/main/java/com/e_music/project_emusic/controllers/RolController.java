@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/rols")
+@RequestMapping(path = "/rols")
 public class RolController extends BaseControllerImpl<Rol, ServiceRolImpl> {
 
 }

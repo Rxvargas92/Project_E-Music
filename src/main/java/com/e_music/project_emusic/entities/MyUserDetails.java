@@ -27,12 +27,6 @@ public class MyUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
-
-    /*
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User userDb = userRepository.findByEmail(username);
         if(userDb==null){
             throw new UsernameNotFoundException("Usuario o password inválidos");
@@ -55,6 +49,6 @@ public class MyUserDetails implements UserDetailsService {
     private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getType())).collect(Collectors.toList());
     }
-    */
+
 
 }

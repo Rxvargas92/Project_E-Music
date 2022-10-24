@@ -6,16 +6,16 @@
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/emusic/users/about">About</a>
+            <a class="nav-link active" aria-current="page" href="/users/about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/emusic/carts/cart">Cart</a>
+            <a class="nav-link active" aria-current="page" href="/carts/cart">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/emusic/users/admin_menu">Admin Menu</a>
+            <a class="nav-link active" aria-current="page" href="/users/admin_menu">Admin Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/emusic/instruments/add_instrument">Add Instrument</a>
+            <a class="nav-link active" aria-current="page" href="/instruments/add_instrument">Add Instrument</a>
           </li>
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link active" aria-current="page" th:href="@{/start}">Jobs</a>-->
@@ -26,7 +26,7 @@
                 Crud
               </button>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="/emusic/instruments/crud">Instrument</a></li>
+                <li><a class="dropdown-item" href="/instruments/crud">Instrument</a></li>
                 <li><a class="dropdown-item" href="#!">User</a></li>
                 <li><a class="dropdown-item" href="#!">Category</a></li>
               </ul>
@@ -34,10 +34,15 @@
           </li>
         </ul>
         <form class="d-flex " role="search" action="#!">
-          <button class="btn mx-2" type="submit" style="background-color: #F1E4FF; color: #8C30F5; font-weight: 600 "><a th:href="@{/login}">Login</a></button>
-          <a href="/emusic/users/register">
+
+          <a href="/users/login">
+            <button class="btn mx-2" type="button" style="background-color: #F1E4FF; color: #8C30F5; font-weight: 600 ">Login</button>
+          </a>
+
+          <a href="/users/register">
           <button class="btn " type="button"  style="background-color: #8C30F5; color: white; font-weight: 600">Sign up</button>
           </a>
+
         </form>
       </div>
     </div>

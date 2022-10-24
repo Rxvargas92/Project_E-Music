@@ -26,8 +26,4 @@ public class Rol extends Base {
     @Column(name = "type")
     private String type;
 
-    @OneToMany(mappedBy = "rol")
-    @JsonManagedReference(value = "rol_users")
-    private Collection<User> users;
-
 }

@@ -35,10 +35,13 @@ public class User extends Base {
   @Column(name = "dni")
   private Integer dni;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  @JsonBackReference(value = "rol_users")
-  @JoinColumn(name = "fk_rol", nullable = false)
-  private Rol rol;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "users_roles",
+          joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
+  )
+  private Collection<Rol> roles;
 
   @Column(name = "active")
   private boolean active = true;

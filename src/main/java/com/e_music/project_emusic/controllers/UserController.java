@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/users")
+@RequestMapping(path = "/users")
 public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
 
     @GetMapping (value = "/register")

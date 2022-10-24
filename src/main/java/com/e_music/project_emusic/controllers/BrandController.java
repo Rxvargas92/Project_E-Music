@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/brands")
+@RequestMapping(path = "/brands")
 public class BrandController extends BaseControllerImpl<Brand, ServiceBrandImpl> {
 }

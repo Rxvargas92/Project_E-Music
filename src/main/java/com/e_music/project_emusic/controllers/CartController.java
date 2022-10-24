@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/carts")
+@RequestMapping(path = "/carts")
 public class CartController extends BaseControllerImpl<Cart, ServiceCartImpl> {
 
     @GetMapping (value = "/cart")

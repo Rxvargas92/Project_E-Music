@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/addresses")
+@RequestMapping(path = "/addresses")
 public class AddressController extends BaseControllerImpl<Address, ServiceAddressImpl>{
 }

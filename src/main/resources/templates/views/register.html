@@ -39,13 +39,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="ID">ID</label>
-                    <input type="password" class="form-control" id="ID" placeholder="ID">
+                    <label for="dni">Dni</label>
+                    <input type="password" class="form-control" id="dni" placeholder="Dni">
                 </div>
 
                 <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="password" class="form-control" id="address" placeholder="Address">
+                </div> //pass
+
+                <div class="form-group">
                     <label for="Email_address">Email_address</label>
-                    <input type="email" class="form-control" id="Email_address" aria-describedby="Email_addressHELP"
+                    <input type="email" class="form-control" id="Email_address" name="username" aria-describedby="Email_addressHELP"
                            placeholder="Email_address">
                     <small id="Email_addressHELP" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
@@ -60,7 +65,7 @@
 
                 <div class="form-group">
                     <label for="Password">Password</label>
-                    <input type="password" class="form-control" id="Password" placeholder="Password">
+                    <input type="password" class="form-control" id="Password" name="password" placeholder="Password">
                 </div>
 
                 <div class="form-group">
@@ -72,9 +77,9 @@
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Terms & conditions</label>
                 </div>
-
+                <hr>
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="submit" class="btn btn-primary">Reset Form</button>
+                <button type="reset" class="btn btn-primary">Reset Form</button>
             </form>
         </div>
     </div>

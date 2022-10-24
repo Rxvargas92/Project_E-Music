@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping(path = "/emusic/instruments")
+@RequestMapping(path = "/instruments")
 public class InstrumentController extends BaseControllerImpl< Instrument, ServiceInstrumentImpl >{
 
     @GetMapping(value = "/start")
