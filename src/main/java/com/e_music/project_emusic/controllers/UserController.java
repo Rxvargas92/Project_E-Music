@@ -1,13 +1,13 @@
 package com.e_music.project_emusic.controllers;
 
+import com.e_music.project_emusic.entities.MyUserDetails;
 import com.e_music.project_emusic.entities.User;
+import com.e_music.project_emusic.services.ServiceUser;
 import com.e_music.project_emusic.services.ServiceUserImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
@@ -15,6 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "/users")
 public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
+
+    @Autowired
+    private ServiceUser serviceUser;
+
+    @ModelAttribute("user")
+    public MyUserDetails returnNewRegisterMyUserDetails(){
+        return new MyUserDetails();
+    }
+
+    @PostMapping
+    public String registerUserAccount(@ModelAttribute("user") MyUserDetails myUserDetails){
+        serviceUser.save(myUserDetails);
+        return "redirect:/register?success";
+    }
 
     @GetMapping (value = "/register")
     public ModelAndView register( Model model) {
@@ -63,5 +77,6 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         }
         return modelAndView;
     }
+
 
 }
