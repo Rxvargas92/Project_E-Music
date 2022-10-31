@@ -31,6 +31,7 @@ public class UserController {
     public ModelAndView register( Model model) {
         ModelAndView modelAndView = new ModelAndView();
         try {
+
             modelAndView.setViewName("views/register.html");
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;

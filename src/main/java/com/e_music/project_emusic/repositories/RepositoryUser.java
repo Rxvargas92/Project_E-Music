@@ -12,6 +12,6 @@ import java.util.List;
 public interface RepositoryUser extends RepositoryBase<User, Long> {
 
     @Query ( value = "SELECT * FROM user WHERE user.email = :email", nativeQuery = true )
-    User findByEmail( @Param ( "email" ) long email);
+    User findByEmail( @Param ( "email" ) String email);
 
 }
