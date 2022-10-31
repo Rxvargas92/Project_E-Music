@@ -1,5 +1,7 @@
 package com.e_music.project_emusic.controllers;
 
+import com.e_music.project_emusic.entities.MyUserDetails;
+import com.e_music.project_emusic.entities.User;
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.e_music.project_emusic.services.ServiceBaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;

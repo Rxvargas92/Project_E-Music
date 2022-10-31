@@ -13,4 +13,7 @@ public interface RepositoryInstrument extends RepositoryBase< Instrument, Long> 
     @Query ( value = "SELECT * FROM instrument WHERE instrument.active = true", nativeQuery = true )
     List< Instrument > findAllByActive( );
 
+
+    @Query ( value = "select * from instrument where instrument.stock > 0", nativeQuery = true)
+    List<Instrument> findAllByStockGreaterThan0();
 }
