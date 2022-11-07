@@ -52,13 +52,13 @@ public class Instrument extends Base {
   private Cart cart;
   
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JsonBackReference(value = "brand-instruments")
   @JoinColumn(name = "fk_brand", nullable = false)
   private Brand brand;
 
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JsonBackReference(value = "category-instruments")
   @JoinColumn(name = "fk_category", nullable = false)
   private Category category;

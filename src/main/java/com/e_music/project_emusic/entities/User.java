@@ -52,7 +52,7 @@ public class User extends Base {
   @Column(name = "password")
   private String password;
 
-  @OneToOne(fetch = FetchType.EAGER)
+  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JsonManagedReference
   @JoinColumn(name = "fk_address", nullable = false)
   private Address address;

@@ -13,40 +13,46 @@
 
 <div class="container-fluid">
   <div class="d-flex align-items-center">
-    <div class="col justify-content-center">
-      <div style="
-  border: 1px solid #21130D;
-  border-radius: 4px;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  height: 400px;
-  width: 400px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-">
-
-        <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600; margin: auto;">Add a image</button>
-
-      </div>
-    </div>
     <div class="col py-5">
-      <form>
+      <form th:action="@{/instruments/crud/formInstrument/{id}(id=${instrument.id})}" method="post" th:object="${instrument}">
         <div class="form-group">
           <label for="name"><b>NAME: </b></label>
-          <input type="password" class="form-control" id="name" placeholder="Name">
+          <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Name">
         </div>
         <div class="form-group">
           <label for="category"><b>CATEGORY: </b></label>
-          <input type="password" class="form-control" id="category" placeholder="Category">
+          <select class="form-control" id="category" th:field="*{category}">
+            <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}" placeholder="Category"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="brand"><b>BRAND: </b></label>
+          <select class="form-control" id="brand" th:field="*{brand}">
+            <option th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}" placeholder="Brand"></option>
+          </select>
         </div>
         <div class="form-group">
           <label for="price"><b>PRICE: </b></label>
-          <input type="password" class="form-control" id="price" placeholder="Price">
+          <input type="number" class="form-control" id="price" th:field="*{price}" placeholder="Price">
+        </div>
+        <div class="form-group">
+          <label for="stock"><b>STOCK: </b></label>
+          <input type="number" class="form-control" id="stock" th:field="*{stock}" placeholder="Stock">
         </div>
         <div class="form-group">
           <label for="description"><b>DESCRIPTION: </b></label>
-          <input type="password" class="form-control" id="description" placeholder="Description">
+          <textarea class="form-control" id="description" rows="5" th:field="*{description}"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="active"><b>ACTIVE: </b></label>
+          <select class="form-control" id="active" th:field="*{active}">
+            <option th:value="1" th:text="Yes" ></option>
+            <option th:value="0" th:text="No" ></option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label"><b>IMAGE: </b></label>
+          <input class="form-control" type="file" id="formFile">
         </div>
         <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Save</button>
         <button class="btn mx-2" type="reset" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest form</button>

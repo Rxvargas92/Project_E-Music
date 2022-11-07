@@ -1,12 +1,16 @@
 package com.e_music.project_emusic.services;
 
+import com.e_music.project_emusic.entities.*;
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.e_music.project_emusic.repositories.RepositoryBase;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Slf4j
 public abstract class ServiceBaseImpl<E extends Base, ID extends Serializable>
@@ -23,6 +27,18 @@ public abstract class ServiceBaseImpl<E extends Base, ID extends Serializable>
   public List<E> findAll() throws Exception {
     try {
       List<E> entities = repositoryBase.findAll();
+      return entities;
+    } catch (Exception e) {
+      log.info(e.getMessage());
+      throw new Exception(e.getMessage());
+    }
+  }
+
+  @Override
+  @Transactional
+  public Page<E> findAll(Pageable pageable) throws Exception{
+    try {
+      Page<E> entities= repositoryBase.findAll(pageable);
       return entities;
     } catch (Exception e) {
       log.info(e.getMessage());

@@ -22,27 +22,33 @@
                                          style="width: 145px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">We are E-Music</h4>
                                 </div>
-                                <form>
+                                <form th:action="@{/login}" method="post">
+                                    <div th:if="${param.error}">
+                                        <div class="alert alert-danger">User or password invalids</div>
+                                    </div>
+                                    <div th:if="${param.logout}">
+                                        <div class="alert alert-info">Logout successfully</div>
+                                    </div>
                                     <p>Please login to your account</p>
                                     <div class="form-outline mb-3">
-                                        <input type="email" id="form2Example11" name="username" class="form-control"/>
-                                        <label class="form-label" for="form2Example11">Email address</label>
+                                        <input type="email" id="username" name="username" class="form-control"/>
+                                        <label class="form-label" for="username">Email address</label>
                                     </div>
 
                                     <div class="form-outline mb-3">
-                                        <input type="password" id="form2Example22" name="password" class="form-control"/>
-                                        <label class="form-label" for="form2Example22">Password</label>
+                                        <input type="password" id="password" name="password" class="form-control"/>
+                                        <label class="form-label" for="password">Password</label>
                                     </div>
 
                                     <div class="text-center pt-1 mb-4 pb-1">
-                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="submit" style="background: #8C30F5; color: #F1E4FF"><b>Log in</b></button>
+                                        <button class="btn btn-primary btn-block fa-lg mb-3" type="submit" name="login-submit" id="login-submit" style="background: #8C30F5; color: #F1E4FF"><b>Log in</b></button>
                                         <a class="text-muted" href="#!">Forgot password?</a>
                                     </div>
 
                                     <div class="d-flex flex-column align-items-center justify-content-center pb-4">
                                         <p class="mb-0 me-2">Don't have an account?</p>
                                         <a href="/users/register">
-                                            <button type="button" class="btn btn-primary my-3" style="background: #F1E4FF; color: #8C30F5"><b>Create account</b></button>
+                                            <button type="button" class="btn btn-primary my-3" th:href="@{/register}" style="background: #F1E4FF; color: #8C30F5"><b>Create account</b></button>
                                         </a>
                                     </div>
 

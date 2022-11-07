@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/e7cd538d8b.js" crossorigin="anonymous"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
     <title>Start</title>
 </head>
-<body>
+<body style="min-height: 100vh">
 <nav th:replace="components/navbar :: nav_bar"></nav>
 
 
@@ -17,15 +16,15 @@
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="https://images.pexels.com/photos/89909/pexels-photo-89909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                 class="d-block w-100" alt="...">
+                 class="d-block "  alt="...">
         </div>
         <div class="carousel-item">
             <img src="https://images.pexels.com/photos/164743/pexels-photo-164743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                 class="d-block w-100" alt="...">
+                 class="d-block "  alt="...">
         </div>
         <div class="carousel-item">
             <img src="https://images.pexels.com/photos/942305/pexels-photo-942305.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                 class="d-block w-100" alt="...">
+                 class="d-block " alt="...">
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -38,36 +37,14 @@
     </button>
 </div>
 
-<div class="container-fluid d-flex flex-row text-center">
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Guitar
-            </button>
-        </div>
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Bass
-            </button>
-
-        </div>
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Bass
-            </button>
-
-        </div>
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Drum
-            </button>
-
-        </div>
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Flute
-            </button>
-
-        </div>
-        <div class="my-2 mw-100 mh-100" style="height: 250px; width: 250px;">
-            <button type="button" class="btn btn-light mw-100 mh-100" style="height: 250px; width: 250px;">Guitar
-            </button>
-        </div>
+<div class="container mt-3 text-center">
+    <a type="button" class="btn btn-outline-dark btn-lg" th:href="@{instruments/listAll}">All</a>
+    <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" th:each="category : ${categories}">
+        <a type="button" class="btn btn-outline-dark btn-lg" th:href="@{instruments/list/{id}(id=${category.id})}" th:text="${category.name}" ></a>
     </div>
+</div>
+
+
 
 <nav th:replace="components/footer :: _footer"></nav>
 

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e7cd538d8b.js" crossorigin="anonymous"></script>
+
+    <title>Add Instrument</title>
+</head>
+<body>
+<nav th:replace="components/navbar :: nav_bar"></nav>
+
+<div class="container-fluid">
+    <div class="d-flex align-items-center">
+        <div class="col py-5">
+            <form th:action="@{/instruments/crud/formInstrument}" method="post" th:object="${instrument}">
+                <div class="form-group">
+                    <label for="name"><b>NAME: </b></label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="category"><b>CATEGORY: </b></label>
+                    <select class="form-control" id="category" th:field="*{category}">
+                        <option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}" placeholder="Category"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="brand"><b>BRAND: </b></label>
+                    <select class="form-control" id="brand" th:field="*{brand}">
+                        <option th:each="brand: ${brands}" th:value="${brand.id}" th:text="${brand.name}" placeholder="Brand"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="price"><b>PRICE: </b></label>
+                    <input type="number" class="form-control" id="price" th:field="*{price}" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label for="stock"><b>STOCK: </b></label>
+                    <input type="number" class="form-control" id="stock" th:field="*{stock}" placeholder="Stock">
+                </div>
+                <div class="form-group">
+                    <label for="description"><b>DESCRIPTION: </b></label>
+                    <textarea class="form-control" id="description" rows="5" th:field="*{description}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="active"><b>ACTIVE: </b></label>
+                    <select class="form-control" id="active" th:field="*{active}">
+                        <option th:value="1" th:text="Yes" ></option>
+                        <option th:value="0" th:text="No" ></option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label"><b>IMAGE: </b></label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Save</button>
+                <button class="btn mx-2" type="reset" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest form</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<nav th:replace="components/footer :: _footer"></nav>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+</body>
+</html>

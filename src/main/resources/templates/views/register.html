@@ -27,52 +27,53 @@
         </div>
         <div class="col py-5">
 
-            <form>
+            <form th:action="@{/users/register}" method="post" th:object="${user}">
 
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name">
+                    <input type="text" class="form-control" id="name" th:field="*{user.name}"
+                           required autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
                     <label for="last_name">Last_name</label>
-                    <input type="text" class="form-control" id="last_name" placeholder="Last_name">
+                    <input type="text" class="form-control" id="last_name" placeholder="Last_name" th:field="*{user.last_name}">
                 </div>
 
                 <div class="form-group">
                     <label for="dni">Dni</label>
-                    <input type="text" class="form-control" id="dni" placeholder="Dni">
+                    <input type="text" class="form-control" id="dni" placeholder="Dni" th:field="*{user.dni}">
                 </div>
                 <hr>
                 <div class="form-group">
                     <label for="street">Street</label>
-                    <input type="text" class="form-control" id="street" placeholder="Street">
+                    <input type="text" class="form-control" id="street" placeholder="Street" th:field="*{user.address.street}">
                 </div>
 
                 <div class="form-group">
                     <label for="number">Number</label>
-                    <input type="text" class="form-control" id="number" placeholder="Number">
+                    <input type="text" class="form-control" id="number" placeholder="Number" th:field="*{user.address.number}">
                 </div>
 
                 <div class="form-group">
                     <label for="postalCode">Postal code</label>
-                    <input type="text" class="form-control" id="postalCode" placeholder="Postal code">
+                    <input type="text" class="form-control" id="postalCode" placeholder="Postal code" th:field="*{user.address.postalCode}">
                 </div>
 
                 <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="text" class="form-control" id="location" placeholder="Location">
+                    <input type="text" class="form-control" id="location" placeholder="Location" th:field="*{user.address.location}">
                 </div>
 
                 <div class="form-group">
                     <label for="province">Province</label>
-                    <input type="text" class="form-control" id="province" placeholder="Province">
+                    <input type="text" class="form-control" id="province" placeholder="Province" th:field="*{user.address.province}">
                 </div>
 
                 <hr>
                 <div class="form-group">
                     <label for="email">Email_address</label>
-                    <input type="email" class="form-control" id="email" name="username" aria-describedby="Email_addressHELP"
+                    <input type="email" class="form-control" id="email" name="username" th:field="*{user.email}" aria-describedby="Email_addressHELP"
                            placeholder="Email address">
                     <small id="Email_addressHELP" class="form-text text-muted">We'll never share your email with anyone
                         else.</small>
@@ -80,7 +81,7 @@
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" th:field="*{user.password}" placeholder="Password">
                 </div>
 
                 <div class="form-check">
