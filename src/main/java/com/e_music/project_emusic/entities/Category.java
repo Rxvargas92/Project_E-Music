@@ -19,6 +19,7 @@ import org.hibernate.envers.Audited;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Category extends Base {
 
+  @NotEmpty(message = "Name cannot be null")
   @Column(name = "name")
   private String name;
 

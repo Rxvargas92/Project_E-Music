@@ -7,12 +7,21 @@ import com.e_music.project_emusic.services.ServiceInstrument;
 import com.e_music.project_emusic.services.ServiceInstrumentImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
+import java.awt.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Slf4j
@@ -74,9 +83,30 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
     }
 
     @PostMapping(value = "/crud/formInstrument/{id}")
-    public ModelAndView editInstrument(@ModelAttribute("instrument") Instrument instrument, @PathVariable("id")long id, RedirectAttributes redirectAttributes){
+    public ModelAndView editInstrument(
+            @RequestParam(value = "file") MultipartFile archive,
+            @Valid @ModelAttribute("instrument") Instrument instrument,
+            BindingResult result,
+            @PathVariable("id")long id,
+            RedirectAttributes redirectAttributes)
+    {
         ModelAndView modelAndView = new ModelAndView();
         try {
+            modelAndView.addObject("categories", serviceCategory.findAll());
+            modelAndView.addObject("brands", serviceBrand.findAll());
+            if (result.hasErrors()){
+                modelAndView.setViewName("views/forms/add_instrument");
+                return modelAndView;
+            }
+            String route = "C://Ecommerce/images";
+            int index = archive.getOriginalFilename().indexOf(".");
+            String extension = "";
+            extension = "."+archive.getOriginalFilename().substring(index+1);
+            String photoName = Calendar.getInstance().getTimeInMillis()+extension;
+            Path absoluteRoute = Paths.get(route+"//"+instrument.getPathImage());
+            if (!archive.isEmpty()){
+                Files.write(absoluteRoute, archive.getBytes());
+            }
             this.serviceInstrument.updateOne(instrument, id);
             redirectAttributes.addFlashAttribute("message", "Edited Correctly!");
             redirectAttributes.addFlashAttribute("class", "success");
@@ -105,9 +135,31 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
     }
 
     @PostMapping(value = "/crud/formInstrument")
-    public ModelAndView saveInstrument(@ModelAttribute("instrument") Instrument instrument, RedirectAttributes redirectAttributes){
+    public ModelAndView saveInstrument(
+            @RequestParam("file") MultipartFile archive,
+            @Valid @ModelAttribute("instrument") Instrument instrument,
+            BindingResult result,
+            RedirectAttributes redirectAttributes)
+    {
         ModelAndView modelAndView = new ModelAndView();
         try {
+            modelAndView.addObject("categories", serviceCategory.findAll());
+            modelAndView.addObject("brands", serviceBrand.findAll());
+            if (result.hasErrors()){
+                modelAndView.setViewName("views/forms/add_instrument");
+                return modelAndView;
+            }
+            if (!archive.isEmpty()){
+                String route = "C://Ecommerce/images";
+                int index = archive.getOriginalFilename().indexOf(".");
+                String extension = "";
+                extension = "."+archive.getOriginalFilename().substring(index+1);
+                String photoName = Calendar.getInstance().getTimeInMillis()+extension;
+                Path absoluteRoute = Paths.get(route+"//"+photoName);
+                Files.write(absoluteRoute,archive.getBytes());
+                instrument.setPathImage(photoName);
+            }
+
             this.serviceInstrument.saveOne(instrument);
             redirectAttributes.addFlashAttribute("message", "Saved Correctly!");
             redirectAttributes.addFlashAttribute("class", "success");
