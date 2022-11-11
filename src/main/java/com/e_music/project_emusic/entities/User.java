@@ -43,9 +43,6 @@ public class User extends Base {
   )
   private Collection<Rol> roles;
 
-  @Column(name = "active")
-  private boolean active = true;
-
   @Column(name = "email")
   private String email;
 
@@ -56,10 +53,5 @@ public class User extends Base {
   @JsonManagedReference
   @JoinColumn(name = "fk_address", nullable = false)
   private Address address;
-
-
-  @OneToOne(mappedBy = "user")
-  @JsonBackReference
-  private Cart cart;
 
 }

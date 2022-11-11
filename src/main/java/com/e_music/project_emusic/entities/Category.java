@@ -35,9 +35,6 @@ public class Category extends Base {
   @Column(name = "name")
   private String name;
 
-  @Column(name = "active")
-  private boolean active = true;
-
   @OneToMany(mappedBy = "category")
   @JsonManagedReference(value = "category-instruments")
   private List<Instrument> instruments;

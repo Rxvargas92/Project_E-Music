@@ -25,10 +25,6 @@ public class Cart extends Base {
   @Column(name = "total_price")
   private Double total_price;
 
-  @Column(name = "active")
-  private boolean active;
-
-
   @OneToOne(fetch = FetchType.EAGER)
   @JsonManagedReference
   @JoinColumn(name = "fk_user", nullable = false)

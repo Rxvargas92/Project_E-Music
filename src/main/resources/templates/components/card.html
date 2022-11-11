@@ -13,7 +13,7 @@
                         <h6 class="card-title">Price</h6>
                         <li class="list-group-item" th:text="${instrument.price}"></li>
                     </ul>
-                    <a th:href="@{details/{id}(id=${instrument.id})}" class="btn btn-light">View details</a>
+                    <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-light">View details</a>
                 </div>
             </div>
         </div>

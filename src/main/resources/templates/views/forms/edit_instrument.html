@@ -60,6 +60,7 @@
         <div class="form-group">
           <label for="file" class="form-label"><b>IMAGE: </b></label>
           <input class="form-control" type="file" id="file" name="file">
+          <div class="text-danger" th:if="${imageErrorMsg}" th:text="${imageErrorMsg}"></div>
         </div>
         <button class="btn mx-2" type="submit" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Save</button>
         <button class="btn mx-2" type="reset" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest form</button>

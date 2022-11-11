@@ -57,11 +57,6 @@ public class Instrument extends Base {
   @Column(name = "description")
   private String description;
 
-  @OneToOne(mappedBy = "instrument")
-  @JsonBackReference
-  private Cart cart;
-  
-
   @NotNull(message = "Brand cannot be null")
   @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
   @JsonBackReference(value = "brand-instruments")

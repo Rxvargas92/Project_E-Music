@@ -20,18 +20,16 @@ public class MyUserDetails {
     private String lastName;
     private Integer dni;
     private Collection<Rol> roles;
-    private boolean active = true;
     private String email;
     private String password;
     private Address address;
     private Cart cart;
 
-    public MyUserDetails(String name, String lastName, Integer dni, Collection<Rol> roles, boolean active, String email, String password, Address address, Cart cart) {
+    public MyUserDetails(String name, String lastName, Integer dni, Collection<Rol> roles, String email, String password, Address address, Cart cart) {
         this.name = name;
         this.lastName = lastName;
         this.dni = dni;
         this.roles = roles;
-        this.active = active;
         this.email = email;
         this.password = password;
         this.address = address;

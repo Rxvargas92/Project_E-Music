@@ -25,7 +25,6 @@ public class BrandController extends BaseControllerImpl<Brand, ServiceBrandImpl>
         try{
             modelAndView.setViewName("views/forms/formBrand");
             modelAndView.addObject("brand", new Brand());
-            modelAndView.addObject("brands", serviceBrand.findAll());
         }catch (Exception e){
             log.info(e.getMessage(), e);
             modelAndView.setViewName("error.html");

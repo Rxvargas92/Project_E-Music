@@ -25,7 +25,6 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
         try{
             modelAndView.setViewName("views/forms/formCategory");
             modelAndView.addObject("category", new Category());
-            modelAndView.addObject("categories", serviceCategory.findAllByActive());
         }catch (Exception e){
             log.info(e.getMessage(), e);
             modelAndView.setViewName("error.html");
