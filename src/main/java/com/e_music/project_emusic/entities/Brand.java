@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -25,6 +26,7 @@ import org.hibernate.envers.Audited;
 @NoArgsConstructor
 public class  Brand extends Base {
 
+    @NotEmpty(message = "Name cannot be null")
     @Column(name = "name")
     private String name;
 
