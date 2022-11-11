@@ -39,13 +39,13 @@ public class Instrument extends Base {
   private String name;
 
   @Max(value= 1000000, message = "Price cannot be greater than 1000000")
-  @Positive(message = "Stock must be positive")
+  @Min(value = 1, message = "Price cannot be less than 1")
   @Digits(integer = 7, fraction = 2)
   @Column(name = "price")
   private Double price;
 
   @Max(value= 10000, message = "Stock cannot be greater than 10000")
-  @Positive(message = "Stock must be positive")
+  @Min(value = 0, message = "Stock cannot be less than 0")
   @Column(name = "stock")
   private Integer stock;
 
