@@ -15,7 +15,7 @@ public class ImageConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
         WebMvcConfigurer.super.addResourceHandlers(registry);
-        registry.addResourceHandler("/images/**").addResourceLocations("file:/C:/Ecommerce/images/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:/main/resources/templates/util/instruments/");
     }
 
 
