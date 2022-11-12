@@ -12,8 +12,11 @@ import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -26,11 +29,14 @@ import java.util.List;
 @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class User extends Base {
 
+
   @Column(name = "name")
   private String name;
 
+
   @Column(name = "lastName")
   private String lastName;
+
 
   @Column(name = "dni")
   private Integer dni;
@@ -41,17 +47,29 @@ public class User extends Base {
           joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
           inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id")
   )
-  private Collection<Rol> roles;
+  private Set<Rol> roles = new HashSet<>();
 
-  @Column(name = "email")
+
+  @Email(message = "This field must have mail format")
+  @Column(name = "email", unique = true)
   private String email;
+
 
   @Column(name = "password")
   private String password;
 
+
   @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JsonManagedReference
-  @JoinColumn(name = "fk_address", nullable = false)
+  @JoinColumn(name = "fk_address", nullable = true)
   private Address address;
 
+  public User(String name, String lastName, Integer dni, String email, String password, Address address) {
+    this.name = name;
+    this.lastName = lastName;
+    this.dni = dni;
+    this.email = email;
+    this.password = password;
+    this.address = address;
+  }
 }

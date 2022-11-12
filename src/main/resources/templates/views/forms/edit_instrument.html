@@ -15,6 +15,9 @@
   <div class="d-flex align-items-center">
     <div class="col py-5">
       <form th:action="@{/instruments/crud/formInstrument/{id}(id=${instrument.id})}" method="post" th:object="${instrument}" enctype="multipart/form-data">
+        <!-- control ataque csrf -->
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <!-- fin control ataque csrf -->
         <div class="form-group">
           <label for="name"><b>NAME: </b></label>
           <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Name">

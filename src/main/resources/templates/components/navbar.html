@@ -1,3 +1,6 @@
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <nav th:fragment="nav_bar" class="navbar navbar-expand-lg bg-light navbar-light">
   <div class="container">
     <div class="container-fluid">
@@ -15,21 +18,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page">User Manager</a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link active" aria-current="page" th:href="@{/start}">Jobs</a>-->
-<!--          </li>-->
-          <li class="nav-item">
+
+          <li class="nav-item" sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">
             <div class="dropdown">
-              <a class="btn btn-light" type="button" th:href="@{/instruments/crud/instruments}">
+              <a class="btn btn-light" type="button"  th:href="@{/instruments/crud/instruments}">
                 Crud
               </a>
 
             </div>
           </li>
         </ul>
-        <form class="d-flex ml-auto" role="search" action="#!">
+        <form class="d-flex ml-auto" role="search" action="#!" sec:authorize="!isAuthenticated()">
 
-          <a href="/users/login">
+          <a href="/users/login" >
             <button class="btn mx-2" type="button" style="background-color: #F1E4FF; color: #8C30F5; font-weight: 600 ">Login</button>
           </a>
 
@@ -37,6 +38,11 @@
           <button class="btn " type="button"  style="background-color: #8C30F5; color: white; font-weight: 600">Sign up</button>
           </a>
 
+        </form>
+        <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </button>
         </form>
       </div>
     </div>

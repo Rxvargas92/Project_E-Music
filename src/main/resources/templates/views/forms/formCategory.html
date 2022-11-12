@@ -16,6 +16,9 @@
         <div class="col-md-4 mx-auto">
             <h5 class="mb-4">New Category</h5>
             <form th:action="@{/categories/crud/formCategory}" method="post" th:object="${category}">
+                <!-- control ataque csrf -->
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <!-- fin control ataque csrf -->
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" th:field="*{name}" name="name" required="required" autocomplete="off">

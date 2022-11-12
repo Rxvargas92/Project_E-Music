@@ -6,6 +6,7 @@ import com.e_music.project_emusic.services.ServiceCategory;
 import com.e_music.project_emusic.services.ServiceCategoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,6 +20,7 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
     @Autowired
     private ServiceCategory serviceCategory;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formCategory")
     public ModelAndView formCategory(){
         ModelAndView modelAndView = new ModelAndView();
@@ -32,6 +34,7 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formCategory")
     public ModelAndView saveCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) throws Exception {
         ModelAndView modelAndView = new ModelAndView();

@@ -10,6 +10,7 @@ import com.e_music.project_emusic.services.ServiceInstrumentImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -41,18 +42,6 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
 
     @Autowired
     private ServiceBrand serviceBrand;
-
-    @GetMapping(value = "/start")
-    public ModelAndView start() {
-        ModelAndView modelAndView = new ModelAndView();
-        try {
-            modelAndView.setViewName("views/start.html");
-        } catch (Exception e) {
-            log.info(e.getMessage(),e) ;
-            modelAndView.setViewName("error.html");
-        }
-        return modelAndView;
-    }
 
     @GetMapping(value = "/listAll")
     public ModelAndView listAllInstrument() {
@@ -108,6 +97,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/viewInstrument/{id}")
     public ModelAndView detailsCrud(@PathVariable("id") long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -122,6 +112,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping (value = "/crud/instruments")
     public ModelAndView crud(Model model) {
         ModelAndView modelAndView = new ModelAndView();
@@ -135,6 +126,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formInstrument")
     public ModelAndView saveInstrument(){
         ModelAndView modelAndView = new ModelAndView();
@@ -155,6 +147,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formInstrument")
     public ModelAndView saveInstrument(
             @RequestParam("file") MultipartFile archive,
@@ -206,6 +199,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formInstrument/{id}")
     public ModelAndView editInstrument(@PathVariable("id")long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -225,6 +219,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formInstrument/{id}")
     public ModelAndView editInstrument(
             @RequestParam(value = "file") MultipartFile archive,
@@ -276,6 +271,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/delete/{id}")
     public ModelAndView deleteFormInstrument(@PathVariable("id")long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -290,6 +286,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/delete/{id}")
     public ModelAndView deleteInstrument(@ModelAttribute("instrument") Instrument instrument, @PathVariable("id")long id, RedirectAttributes redirectAttributes){
         ModelAndView modelAndView = new ModelAndView();

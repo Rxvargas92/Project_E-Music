@@ -24,8 +24,8 @@ public class IndexController {
     @Autowired
     private ServiceCategory serviceCategory;
 
-    @GetMapping(value = "")
-    public ModelAndView indexView(Model model){
+    @GetMapping(value = {"", "/index"})
+    public ModelAndView indexView(){
         ModelAndView modelAndView = new ModelAndView();
         try{
             modelAndView.setViewName("index");
@@ -38,4 +38,19 @@ public class IndexController {
         }
         return modelAndView;
     }
+
+    @GetMapping(value = "/forbidden")
+    public ModelAndView forbidden(){
+        ModelAndView modelAndView = new ModelAndView();
+        try{
+            modelAndView.setViewName("/forbidden");
+
+        }catch (Exception e){
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
+
 }
