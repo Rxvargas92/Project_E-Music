@@ -19,12 +19,23 @@ public interface RepositoryInstrument extends RepositoryBase< Instrument, Long>{
     List< Instrument > findAllByActive( );
 
     @Query ( value = "SELECT * FROM instrument WHERE instrument.active = true",
-            countQuery = "SELECT  count(*) from instrument",
+            countQuery = "SELECT  count(5) from instrument",
             nativeQuery = true )
     Page< Instrument > findAllByActive(Pageable pageable);
+
+    @Query(value = "SELECT * FROM instrument WHERE instrument.active = true AND instrument.fk_category = :idCategory",
+            nativeQuery = true,
+            countQuery = "SELECT count(*) FROM instrument")
+    Page<Instrument> findByActiveAndCategoryPage(Pageable pageable, @Param("idCategory") Long id);
 
     @Query ( value = "SELECT * FROM instrument WHERE instrument.id = :id AND instrument.active = true", nativeQuery = true)
     Optional<Instrument> findAllByAndActive(@Param("id") long id);
 
-    Instrument findByName(String name);
+    @Query(
+            value = "SELECT * FROM instrument WHERE instrument.name LIKE %:filter%",
+            countQuery = "SELECT count(*) FROM instrument",
+            nativeQuery = true
+    )
+    Page<Instrument> searchNative(@Param("filter") String filter, Pageable pageable);
+
 }

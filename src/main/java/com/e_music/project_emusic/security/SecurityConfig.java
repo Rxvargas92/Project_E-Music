@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.thymeleaf.spring5.processor.SpringUErrorsTagProcessor;
 
 @Configuration
 @EnableWebSecurity
@@ -42,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/index", "/error", "/forbidden", "/users/login" , "/users/register", "/users/about", "instruments/listAll", "instruments/list/{id}","instruments/details/{id}") //Url permitidas
+                .antMatchers("/images/**", "/", "/index", "/error", "/forbidden", "/users/login" , "/users/register", "/users/about", "/instruments/listAll", "/instruments/list/{id}","/instruments/details/{id}") //Url permitidas
                 .permitAll()
                 .antMatchers("/users/register") //Url de post para registro de usuarios
                 .permitAll()
@@ -51,14 +50,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/users/login") // Url de post
                 .loginPage("/users/login").permitAll() //Url del formulario para login de usuarios
-                .defaultSuccessUrl("/index") //Url de redirect si login ok
+                .defaultSuccessUrl( "/", true) //Url de redirect si login ok
                 .usernameParameter("username") //nombre del atributo de username del form login
                 .passwordParameter("password") //nombre del atributo de password del form login
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler()) //manejo de excepcion
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))//logout
-                .logoutSuccessUrl("/users/login?logout").permitAll()
+                .logoutSuccessUrl("/").permitAll()
                 .deleteCookies("JSESSIONID")
                 .and()
                 .rememberMe().tokenValiditySeconds(3600000).key("secret").rememberMeParameter("checkRememberMe");

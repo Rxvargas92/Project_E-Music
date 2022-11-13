@@ -12,173 +12,81 @@
 
 <nav th:replace="components/navbar :: nav_bar"></nav>
 
-<section class="h-100" style="background-color: #eee;">
-    <div class="container h-100 py-5">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-10">
-
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
-                    <div>
-                        <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!" class="text-body">price <i
-                                class="fas fa-angle-down mt-1"></i></a></p>
+<div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
+     th:text="${message}"
+     class="alert">
+</div>
+<div class="container px-4 text-center">
+    <div class="row gx-5">
+        <div class="col">
+            <div class="container text-center"><h3 class="row text-center"> You are buying:</h3></div>
+            <div class="card mb-3" style="max-width: 540px;" th:object="${instrument}">
+                <div class="row g-0 text-center">
+                    <div class="col-md-4">
+                        <img th:src="@{'/images/'} + *{pathImage}" class="img-fluid" alt="instrument image">
                     </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">$499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="*{name}"></h4>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"></li>
+                                <h6 class="card-title">Price</h6>
+                                <li class="list-group-item" th:text="'$ '+*{price}"></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">$499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">$499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card rounded-3 mb-4">
-                    <div class="card-body p-4">
-                        <div class="row d-flex justify-content-between align-items-center">
-                            <div class="col-md-2 col-lg-2 col-xl-2">
-                                <img
-                                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-3">
-                                <p class="lead fw-normal mb-2">Basic T-shirt</p>
-                                <p><span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-
-                                <input id="form1" min="0" name="quantity" value="2" type="number"
-                                       class="form-control form-control-sm" />
-
-                                <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                <h5 class="mb-0">$499.00</h5>
-                            </div>
-                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-warning btn-block btn-lg" style="background: #8C30F5; color: #F1E4FF">Proceed to Pay</button>
-                    </div>
-                </div>
-
             </div>
         </div>
+        <div class="col">
+            <form class="row g-3" th:action="@{}" method="post" th:object="${address}">
+                <div class="col-md-6">
+                    <label for="street" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="street" th:field="*{street}">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                </div>
+                <div class="col-12">
+                    <label for="inputAddress2" class="form-label">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                            Check me out
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </form>
+        </div>
     </div>
-</section>
+</div>
+
 
 <nav th:replace="components/footer :: _footer"></nav>
 

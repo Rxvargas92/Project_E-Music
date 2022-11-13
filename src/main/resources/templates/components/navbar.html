@@ -15,9 +15,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/carts/cart">Cart</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page">User Manager</a>
-          </li>
 
           <li class="nav-item" sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">
             <div class="dropdown">
@@ -39,9 +36,9 @@
           </a>
 
         </form>
-        <form sec:authorize="isAuthenticated()" class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
-          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">
-            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        <form sec:authorize="isAuthenticated()" class="d-flex ml-auto" th:action="@{/logout}" method="post">
+          <button class="btn btn-outline-danger mx-2" type="submit">
+            <i class="fas fa-sign-out-alt"></i> Logout
           </button>
         </form>
       </div>

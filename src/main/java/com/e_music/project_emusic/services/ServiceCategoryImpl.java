@@ -4,6 +4,7 @@ import com.e_music.project_emusic.entities.Brand;
 import com.e_music.project_emusic.entities.Cart;
 import com.e_music.project_emusic.entities.Category;
 import com.e_music.project_emusic.repositories.RepositoryBase;
+import com.e_music.project_emusic.repositories.RepositoryBrand;
 import com.e_music.project_emusic.repositories.RepositoryCategory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,20 @@ public class ServiceCategoryImpl extends ServiceBaseImpl<Category, Long> impleme
     @Autowired
     private RepositoryCategory repositoryCategory;
 
+
     @Override
-    public List<Category> findAllByActive() throws Exception{
+    public Optional<Category> getByName(String name) throws Exception {
+        return repositoryCategory.findByName(name);
+    }
+
+    @Override
+    public boolean existsByName(String name) throws Exception {
         try{
-            List<Category> opt = repositoryCategory.findAllByActive();
-            return opt;
+            if (repositoryCategory.existsByName(name)){
+                return true;
+            }else{
+                return false;
+            }
         }catch (Exception e){
             log.info(e.getMessage());
             throw new Exception(e.getMessage());

@@ -29,15 +29,16 @@ import java.util.Set;
 @JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@id")
 public class User extends Base {
 
-
+  @NotEmpty(message = "The name cannot be empty")
   @Column(name = "name")
   private String name;
 
-
+  @NotEmpty(message = "The Last name cannot be empty")
   @Column(name = "lastName")
   private String lastName;
 
-
+  @Min(value = 1000000, message = "DNI cannot be less than 1000000")
+  @Max(value= 99999999, message = "DNI cannot be greater than 99999999")
   @Column(name = "dni")
   private Integer dni;
 
@@ -50,11 +51,12 @@ public class User extends Base {
   private Set<Rol> roles = new HashSet<>();
 
 
+  @NotEmpty(message = "The Email cannot be empty")
   @Email(message = "This field must have mail format")
   @Column(name = "email", unique = true)
   private String email;
 
-
+  @NotNull(message = "Password cannot be null")
   @Column(name = "password")
   private String password;
 

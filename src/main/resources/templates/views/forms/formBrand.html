@@ -15,6 +15,10 @@
   <div class="row">
     <div class="col-md-4 mx-auto">
       <h5 class="mb-4">New Brand</h5>
+      <div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
+           th:text="${message}"
+           class="alert">
+      </div>
       <form th:action="@{/brands/crud/formBrand}" method="post" th:object="${brand}">
         <!-- control ataque csrf -->
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ServiceUser extends ServiceBase<User, Long>{
 
-    public Optional<User> getByEmail(String email);
+    Optional<User> getByEmail(String email);
 
     boolean existsByEmail(String email) throws Exception;
 

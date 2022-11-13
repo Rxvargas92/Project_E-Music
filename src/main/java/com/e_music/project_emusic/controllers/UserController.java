@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -49,7 +50,6 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         try{
             modelAndView.setViewName("views/forms/register");
             modelAndView.addObject("user", new User());
-            modelAndView.addObject("address", new Address());
         }catch (Exception e){
             log.info(e.getMessage(),e) ;
             modelAndView.setViewName("error.html");
@@ -69,8 +69,9 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
                 return modelAndView;
             }
             if(serviceUser.existsByEmail(user.getEmail())){
-                modelAndView.setViewName("/views/forms/register");
-                redirectAttributes.addFlashAttribute("message", "that email is already registered ");
+                redirectAttributes.addFlashAttribute("message", "That email is already registered");
+                redirectAttributes.addFlashAttribute("class", "warning");
+                modelAndView.setViewName("redirect:/users/register");
                 return modelAndView;
             }
             Rol rolUser = serviceRol.getByRolName(RolName.ROLE_USER).get();

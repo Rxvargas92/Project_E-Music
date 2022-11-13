@@ -53,7 +53,7 @@ public class Instrument extends Base {
   private String pathImage;
 
   @NotNull(message = "description cannot be null")
-  @Size(min = 10, max = 200, message = "About Me must be between 10 and 200 characters")
+  @Size(min = 10, max = 500, message = "Description must be between 10 and 500 characters")
   @Column(name = "description")
   private String description;
 

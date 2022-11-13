@@ -39,10 +39,17 @@ public class BrandController extends BaseControllerImpl<Brand, ServiceBrandImpl>
     public ModelAndView saveCategory(@ModelAttribute("brand") Brand brand, RedirectAttributes redirectAttributes) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         try {
-            brand = serviceBrand.saveOne(brand);
-            redirectAttributes.addFlashAttribute("message", "Saved Correctly!");
-            redirectAttributes.addFlashAttribute("class", "success");
-            modelAndView.setViewName("redirect:/instruments/crud/instruments");
+            if(serviceBrand.existsByName(brand.getName())){
+                redirectAttributes.addFlashAttribute("message", "that brand is already saved");
+                redirectAttributes.addFlashAttribute("class", "warning");
+                modelAndView.setViewName("redirect:/brands/crud/formBrand");
+                return modelAndView;
+            }else {
+                brand = serviceBrand.saveOne(brand);
+                redirectAttributes.addFlashAttribute("message", "Saved Correctly!");
+                redirectAttributes.addFlashAttribute("class", "success");
+                modelAndView.setViewName("redirect:/instruments/crud/instruments");
+            }
         } catch (Exception e) {
             log.info(e.getMessage(), e);
             modelAndView.setViewName("error.html");

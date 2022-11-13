@@ -7,13 +7,12 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h4 class="card-title" th:text="${instrument.name}"></h4>
-                    <p class="card-text" th:text="${instrument.description}"></p>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"></li>
                         <h6 class="card-title">Price</h6>
-                        <li class="list-group-item" th:text="${instrument.price}"></li>
+                        <li class="list-group-item" th:text="'$ '+${instrument.price}"></li>
                     </ul>
-                    <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-light">View details</a>
+                    <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-primary">View details</a>
                 </div>
             </div>
         </div>

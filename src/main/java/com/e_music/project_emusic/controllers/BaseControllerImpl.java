@@ -29,6 +29,7 @@ public abstract class BaseControllerImpl <E extends Base, S extends ServiceBaseI
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id){
         try {

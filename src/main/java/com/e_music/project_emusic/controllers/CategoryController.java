@@ -39,10 +39,17 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
     public ModelAndView saveCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         try {
-            category = serviceCategory.saveOne(category);
-            redirectAttributes.addFlashAttribute("message", "Saved Correctly!");
-            redirectAttributes.addFlashAttribute("class", "success");
-            modelAndView.setViewName("redirect:/instruments/crud/instruments");
+            if(serviceCategory.existsByName(category.getName())){
+                redirectAttributes.addFlashAttribute("message", "that category is already saved");
+                redirectAttributes.addFlashAttribute("class", "warning");
+                modelAndView.setViewName("redirect:/categories/crud/formCategory");
+                return modelAndView;
+            }else {
+                category = serviceCategory.saveOne(category);
+                redirectAttributes.addFlashAttribute("message", "Saved Correctly!");
+                redirectAttributes.addFlashAttribute("class", "success");
+                modelAndView.setViewName("redirect:/instruments/crud/instruments");
+            }
         } catch (Exception e) {
             log.info(e.getMessage(), e);
             modelAndView.setViewName("error.html");

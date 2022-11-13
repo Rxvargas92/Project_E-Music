@@ -18,14 +18,15 @@
                         <div class="col-lg-6">
                             <div class="card-body p-md-5 mx-md-4">
 
-                                <div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
-                                     th:text="${message}"
-                                     class="alert">
-                                </div>
+
                                 <div class="text-center">
                                     <img src="https://cdn.icon-icons.com/icons2/660/PNG/512/guitar-pick_icon-icons.com_60082.png"
                                          style="width: 145px;" alt="logo">
                                     <h4 class="mt-1 mb-5 pb-1">We are E-Music</h4>
+                                </div>
+                                <div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
+                                     th:text="${message}"
+                                     class="alert">
                                 </div>
                                 <p sec:authorize="isAuthenticated()">Ya has iniciado sesión</p>
                                 <div th:if="${param.error}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">

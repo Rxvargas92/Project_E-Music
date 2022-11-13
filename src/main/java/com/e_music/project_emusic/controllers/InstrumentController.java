@@ -3,14 +3,16 @@ package com.e_music.project_emusic.controllers;
 import com.e_music.project_emusic.entities.Brand;
 import com.e_music.project_emusic.entities.Category;
 import com.e_music.project_emusic.entities.Instrument;
-import com.e_music.project_emusic.services.ServiceBrand;
-import com.e_music.project_emusic.services.ServiceCategory;
-import com.e_music.project_emusic.services.ServiceInstrument;
-import com.e_music.project_emusic.services.ServiceInstrumentImpl;
+import com.e_music.project_emusic.entities.User;
+import com.e_music.project_emusic.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +26,7 @@ import java.awt.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Comparator;
+import java.util.*;
 import java.util.List;
 
 @Slf4j
@@ -42,6 +42,9 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
 
     @Autowired
     private ServiceBrand serviceBrand;
+
+    @Autowired
+    private ServiceUser serviceUser;
 
     @GetMapping(value = "/listAll")
     public ModelAndView listAllInstrument() {
@@ -114,10 +117,23 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping (value = "/crud/instruments")
-    public ModelAndView crud(Model model) {
+    public ModelAndView crud(Authentication auth) {
         ModelAndView modelAndView = new ModelAndView();
         try {
             modelAndView.setViewName("views/crud");
+            User user = new User();
+            String userName = auth.getName();
+            log.info(userName);
+            Optional<User> opt = Optional.of(serviceUser.getByEmail(userName).orElseThrow());
+            if (opt.isEmpty()){
+                log.info("No se encontro");
+            }else{
+                user = opt.get();
+                modelAndView.addObject("user", user);
+                log.info(opt.get().getName());
+                log.info(user.getName());
+                log.info("Si se encontro y asigno");
+            }
             modelAndView.addObject("instruments", serviceInstrument.findAll());
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;
@@ -243,27 +259,21 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
             extension = "."+archive.getOriginalFilename().substring(index+1);
             String photoName = Calendar.getInstance().getTimeInMillis()+extension;
             Path absoluteRoute = Paths.get(route+"//"+instrument.getPathImage());
-            if (archive.isEmpty()){
-                modelAndView.setViewName("views/forms/edit_instrument");
-                modelAndView.addObject("imageErrorMsg", "Image is required");
+            if (!this.extensionValider(archive)){
+                modelAndView.setViewName("views/forms/add_instrument");
+                modelAndView.addObject("imageErrorMsg", "Extension invalid");
                 return modelAndView;
-            }else{
-                if (!this.extensionValider(archive)){
-                    modelAndView.setViewName("views/forms/add_instrument");
-                    modelAndView.addObject("imageErrorMsg", "Extension invalid");
-                    return modelAndView;
-                }
-                if (archive.getSize() >= 15000000) {
-                    modelAndView.setViewName("views/forms/edit_instrument");
-                    modelAndView.addObject("imageErrorMsg", "The file exceeds 15mb");
-                    return modelAndView;
-                }
-                Files.write(absoluteRoute, archive.getBytes());
-                this.serviceInstrument.updateOne(instrument, id);
-                redirectAttributes.addFlashAttribute("message", "Edited Correctly!");
-                redirectAttributes.addFlashAttribute("class", "success");
-                modelAndView.setViewName("redirect:/instruments/crud/instruments");
             }
+            if (archive.getSize() >= 15000000) {
+                modelAndView.setViewName("views/forms/edit_instrument");
+                modelAndView.addObject("imageErrorMsg", "The file exceeds 15mb");
+                return modelAndView;
+            }
+            Files.write(absoluteRoute, archive.getBytes());
+            this.serviceInstrument.updateOne(instrument, id);
+            redirectAttributes.addFlashAttribute("message", "Edited Correctly!");
+            redirectAttributes.addFlashAttribute("class", "success");
+            modelAndView.setViewName("redirect:/instruments/crud/instruments");
         }catch(Exception e){
             log.info(e.getMessage(),e) ;
             modelAndView.setViewName("error.html");
@@ -314,6 +324,8 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
             return false;
         }
     }
+
+
 
 /*
     @GetMapping (value = "/crud/instruments")
