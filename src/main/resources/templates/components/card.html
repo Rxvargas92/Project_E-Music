@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <div th:fragment="_card" class="card my-2">
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0 text-center">
@@ -15,6 +16,39 @@
                     <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-primary">View details</a>
                 </div>
             </div>
+=======
+<div th:fragment="_card" class="card my-2" style=" box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);
+-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);">
+        <div class="row g-0 text-center" >
+            <img th:src="@{'/images/'} + ${instrument.pathImage}" class="img-fluid" alt="instrument image" width="200px">
+            <h4 class="card-title" th:text="${instrument.name}"></h4>
+            <h6 class="card-title">Price <span th:text="${instrument.price}"></span>$</h6>
+            <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-light">View
+                details</a>
+>>>>>>> Stashed changes
         </div>
     </div>
-</div>
+
+<!--OLD CODE-->
+<!--<div th:fragment="_card" class="card my-2">-->
+<!--    <div class="card mb-3" style="max-width: 540px;">-->
+<!--        <div class="row g-0 text-center">-->
+<!--            <div class="col-md-4">-->
+<!--                <img th:src="@{'/images/'} + ${instrument.pathImage}" class="img-fluid" alt="instrument image">-->
+<!--            </div>-->
+<!--            <div class="col-md-8">-->
+<!--                <div class="card-body">-->
+<!--                    <h4 class="card-title" th:text="${instrument.name}"></h4>-->
+<!--                    <p class="card-text" th:text="${instrument.description}"></p>-->
+<!--                    <ul class="list-group list-group-flush">-->
+<!--                        <li class="list-group-item"></li>-->
+<!--                        <h6 class="card-title">Price</h6>-->
+<!--                        <li class="list-group-item" th:text="${instrument.price}"></li>-->
+<!--                    </ul>-->
+<!--                    <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-light">View details</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
