@@ -1,10 +1,15 @@
 package com.e_music.project_emusic.config;
 
+import com.e_music.project_emusic.entities.Address;
+import com.e_music.project_emusic.entities.Cart;
 import com.e_music.project_emusic.entities.Rol;
 import com.e_music.project_emusic.entities.User;
 import com.e_music.project_emusic.enums.RolName;
+import com.e_music.project_emusic.services.ServiceAddress;
+import com.e_music.project_emusic.services.ServiceCart;
 import com.e_music.project_emusic.services.ServiceRol;
 import com.e_music.project_emusic.services.ServiceUser;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.auditing.config.AuditingBeanDefinitionRegistrarSupport;
@@ -12,13 +17,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class CreateAdmin implements CommandLineRunner {
 
     @Autowired
     private ServiceUser serviceUser;
+
+    @Autowired
+    private ServiceAddress serviceAddress;
+
+    @Autowired
+    private ServiceCart serviceCart;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,5 +55,26 @@ public class CreateAdmin implements CommandLineRunner {
         rols.add(rolUser);
         user.setRoles(rols);
         serviceUser.saveOne(user);*/
+        User user = serviceUser.findById(2L);
+        log.info(user.getEmail());
+        Address address = serviceAddress.findById(4L);
+        log.info(address.getStreet());
+        log.info(String.valueOf(address.getNumber()));
+        address.setUser(user);
+        log.info(address.getUser().getEmail());
+        serviceAddress.updateOne(address, 4L);
+        log.info(serviceAddress.findById(4L).getUser().getEmail());
+        //user.setAddress(address);
+        //serviceUser.updateOne(user, 2L);
+        /*List<Address> addresses = serviceAddress.findAll();
+        for (Address address: addresses) {
+            log.info(address.getStreet());
+            log.info(String.valueOf(address.getNumber()));
+            log.info(address.getLocation());
+            log.info(address.getProvince());
+            log.info(String.valueOf(address.getPostalCode()));
+            log.info("---------------------------------------");
+        }*/
+
     }
 }
