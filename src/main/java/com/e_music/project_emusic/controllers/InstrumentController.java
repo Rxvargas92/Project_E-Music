@@ -4,9 +4,12 @@ import com.e_music.project_emusic.entities.Brand;
 import com.e_music.project_emusic.entities.Category;
 import com.e_music.project_emusic.entities.Instrument;
 import com.e_music.project_emusic.entities.User;
+import com.e_music.project_emusic.security.service.MyUserDetails;
+import com.e_music.project_emusic.security.service.ServiceMyUserDetailsImpl;
 import com.e_music.project_emusic.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -45,6 +48,9 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
 
     @Autowired
     private ServiceUser serviceUser;
+
+    @Autowired
+    private ServiceMyUserDetailsImpl serviceMyUserDetails;
 
     @GetMapping(value = "/listAll")
     public ModelAndView listAllInstrument() {
@@ -121,19 +127,8 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         ModelAndView modelAndView = new ModelAndView();
         try {
             modelAndView.setViewName("views/crud");
-            User user = new User();
-            String userName = auth.getName();
-            log.info(userName);
-            Optional<User> opt = Optional.of(serviceUser.getByEmail(userName).orElseThrow());
-            if (opt.isEmpty()){
-                log.info("No se encontro");
-            }else{
-                user = opt.get();
-                modelAndView.addObject("user", user);
-                log.info(opt.get().getName());
-                log.info(user.getName());
-                log.info("Si se encontro y asigno");
-            }
+            User user = serviceUser.getUserAutenticated(auth);
+            modelAndView.addObject("user", user);
             modelAndView.addObject("instruments", serviceInstrument.findAll());
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;
@@ -253,23 +248,26 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
                 modelAndView.setViewName("views/forms/edit_instrument");
                 return modelAndView;
             }
-            String route = "C://Ecommerce/images";
-            int index = archive.getOriginalFilename().indexOf(".");
-            String extension = "";
-            extension = "."+archive.getOriginalFilename().substring(index+1);
-            String photoName = Calendar.getInstance().getTimeInMillis()+extension;
-            Path absoluteRoute = Paths.get(route+"//"+instrument.getPathImage());
-            if (!this.extensionValider(archive)){
-                modelAndView.setViewName("views/forms/add_instrument");
-                modelAndView.addObject("imageErrorMsg", "Extension invalid");
-                return modelAndView;
+            if (!archive.isEmpty()){
+                String route = "C://Ecommerce/images";
+                int index = archive.getOriginalFilename().indexOf(".");
+                String extension = "";
+                extension = "."+archive.getOriginalFilename().substring(index+1);
+                String photoName = Calendar.getInstance().getTimeInMillis()+extension;
+                Path absoluteRoute = Paths.get(route+"//"+instrument.getPathImage());
+                if (!this.extensionValider(archive)){
+                    modelAndView.setViewName("views/forms/add_instrument");
+                    modelAndView.addObject("imageErrorMsg", "Extension invalid");
+                    return modelAndView;
+                }
+                if (archive.getSize() >= 15000000) {
+                    modelAndView.setViewName("views/forms/edit_instrument");
+                    modelAndView.addObject("imageErrorMsg", "The file exceeds 15mb");
+                    return modelAndView;
+                }
+                Files.write(absoluteRoute, archive.getBytes());
+                instrument.setPathImage(photoName);
             }
-            if (archive.getSize() >= 15000000) {
-                modelAndView.setViewName("views/forms/edit_instrument");
-                modelAndView.addObject("imageErrorMsg", "The file exceeds 15mb");
-                return modelAndView;
-            }
-            Files.write(absoluteRoute, archive.getBytes());
             this.serviceInstrument.updateOne(instrument, id);
             redirectAttributes.addFlashAttribute("message", "Edited Correctly!");
             redirectAttributes.addFlashAttribute("class", "success");

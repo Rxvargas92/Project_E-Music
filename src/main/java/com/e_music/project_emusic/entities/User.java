@@ -1,6 +1,7 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
+import com.e_music.project_emusic.security.service.MyUserDetails;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
+import org.springframework.security.core.Authentication;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -61,8 +63,7 @@ public class User extends Base {
   private String password;
 
 
-  @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-  @JsonManagedReference
+  @OneToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "fk_address", nullable = true)
   private Address address;
 

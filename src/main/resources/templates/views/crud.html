@@ -14,6 +14,7 @@
 <div class="container">
   <div class="row mt-5">
     <div class="col-3" th:object="${user}">
+      <h5 class="modal-title" th:text="'Hello '+ *{email}+' !'"></h5>
       <h5 class="modal-title">CRUD Instruments</h5>
     </div>
   </div>
