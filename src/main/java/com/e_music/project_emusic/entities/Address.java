@@ -47,8 +47,5 @@ public class Address extends Base {
     @Column ( name = "province" )
     private String province;
 
-    @OneToOne( mappedBy = "address" )
-    @JsonBackReference
-    private User user;
 
 }

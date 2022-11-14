@@ -64,7 +64,6 @@ public class User extends Base {
 
 
   @OneToOne(fetch = FetchType.EAGER)
-  @JsonManagedReference
   @JoinColumn(name = "fk_address", nullable = true)
   private Address address;
 

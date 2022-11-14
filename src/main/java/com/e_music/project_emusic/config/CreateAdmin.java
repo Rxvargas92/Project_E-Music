@@ -55,17 +55,22 @@ public class CreateAdmin implements CommandLineRunner {
         rols.add(rolUser);
         user.setRoles(rols);
         serviceUser.saveOne(user);*/
-        User user = serviceUser.findById(2L);
+
+        /*User user = serviceUser.findById(2L);
         log.info(user.getEmail());
         Address address = serviceAddress.findById(4L);
         log.info(address.getStreet());
         log.info(String.valueOf(address.getNumber()));
-        address.setUser(user);
-        log.info(address.getUser().getEmail());
-        serviceAddress.updateOne(address, 4L);
-        log.info(serviceAddress.findById(4L).getUser().getEmail());
+        user.setAddress(address);
+        user.setDni(40123123);
+        user.setName("Alejo");
+        user.setLastName("Araya");
+        log.info(String.valueOf(user.getAddress().getId()));
+        serviceUser.updateOne(user, 2L);*/
+
         //user.setAddress(address);
         //serviceUser.updateOne(user, 2L);
+
         /*List<Address> addresses = serviceAddress.findAll();
         for (Address address: addresses) {
             log.info(address.getStreet());
