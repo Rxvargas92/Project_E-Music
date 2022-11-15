@@ -20,4 +20,46 @@
     </div>
 </th:block>
 
+<th:block th:fragment="paginationAllInstruments" >
+    <div class="row">
+        <div class="col-md-2" id="Back"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${prev == 0 ? 'disabled' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/listAllInstruments?page=${prev}|}">Prev</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/listAllInstruments?page=${page}|}" th:text="${page}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${current == last ? 'disabled' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/listAllInstruments?page=${next}|}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</th:block>
 
+<th:block th:fragment="paginationCategoryInstruments" >
+    <div class="row">
+        <div class="col-md-2" id="Back"></div>
+        <div class="col-md-8">
+            <nav aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${prev == 0 ? 'disabled' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/list/${category.id}?page=${prev}|}">Prev</a>
+                    </li>
+                    <li class="page-item" th:each="page : ${pages}" th:classappend="${current == page ? 'active' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/list/${category.id}?page=${page}|}" th:text="${page}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${current == last ? 'disabled' : ''}">
+                        <a class="bg-black text-white page-link" th:href="@{|/instruments/list/${category.id}?page=${next}|}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</th:block>
