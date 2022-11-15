@@ -78,6 +78,7 @@ public class ServiceUserImpl extends ServiceBaseImpl<User, Long> implements Serv
             }
         }catch (Exception e){
             log.info(e.getMessage(),e);
+            throw new Exception(e.getMessage());
         }
         return user;
     }

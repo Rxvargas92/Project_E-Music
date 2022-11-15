@@ -10,6 +10,8 @@ import com.e_music.project_emusic.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +33,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Slf4j
 @RestController
@@ -52,7 +56,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
     @Autowired
     private ServiceMyUserDetailsImpl serviceMyUserDetails;
 
-    @GetMapping(value = "/listAll")
+    /*@GetMapping(value = "/listAll")
     public ModelAndView listAllInstrument() {
         ModelAndView modelAndView = new ModelAndView();
         try {
@@ -70,21 +74,61 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
             modelAndView.setViewName("error.html");
         }
         return modelAndView;
-    }
+    }*/
 
-    @GetMapping(value = "/list/{id}")
-    public ModelAndView listInstrument(@PathVariable("id") long id ) {
+    @GetMapping(value = "/listAllInstruments")
+    public ModelAndView listAllInstrument(@RequestParam Map<String, Object> params) {
         ModelAndView modelAndView = new ModelAndView();
         try {
-            modelAndView.setViewName("/views/listInstruments.html");
-            List<Instrument> instruments = serviceCategory.findById(id).getInstruments();
-            List<Instrument> instrumentsActive = new ArrayList<>();
-            for (Instrument instrument : instruments) {
-                if(instrument.isActive()){
-                    instrumentsActive.add(instrument);
-                }
+            int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
+
+            PageRequest pageRequest = PageRequest.of(page,10);
+
+            Page<Instrument> pageInstrument = serviceInstrument.findAllByActivePageable(pageRequest);
+
+            int totalPage = pageInstrument.getTotalPages();                                                     //Total de paginas que tienen los datos de la base de datos(cuantos links se muestran)
+            if(totalPage > 0){
+                List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());   //Se crea un listado de numeros desde el 1 al numero final
+                modelAndView.addObject("pages", pages);
             }
-            modelAndView.addObject("instruments", instrumentsActive);
+            modelAndView.setViewName("views/listInstruments");
+            modelAndView.addObject("instruments", pageInstrument.getContent());
+            modelAndView.addObject("current", page + 1);                                        //Parametro para identificar la pagina actual
+            modelAndView.addObject("next", page + 2);
+            modelAndView.addObject("prev", page);
+            modelAndView.addObject("last", totalPage);
+        } catch (Exception e) {
+            log.info(e.getMessage(),e) ;
+            modelAndView.setViewName("error.html");
+        }
+        return modelAndView;
+    }
+
+
+    @GetMapping(value = "/list/{id}")
+    public ModelAndView listInstrument(@PathVariable("id") Long id,
+                                       @RequestParam Map<String, Object> params) {
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
+
+            PageRequest pageRequest = PageRequest.of(page,10);
+
+            Page<Instrument> pageInstrument = serviceInstrument.findAllByActiveAndCategory(id, pageRequest);
+
+            int totalPage = pageInstrument.getTotalPages();                                                     //Total de paginas que tienen los datos de la base de datos(cuantos links se muestran)
+            if(totalPage > 0){
+                List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());   //Se crea un listado de numeros desde el 1 al numero final
+                modelAndView.addObject("pages", pages);
+            }
+            modelAndView.setViewName("views/listInstrumentsCategory");
+            modelAndView.addObject("category", serviceCategory.findById(id));
+            modelAndView.addObject("instruments", pageInstrument.getContent());
+            modelAndView.addObject("current", page + 1);                                        //Parametro para identificar la pagina actual
+            modelAndView.addObject("next", page + 2);
+            modelAndView.addObject("prev", page);
+            modelAndView.addObject("last", totalPage);
+
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;
             modelAndView.setViewName("error.html");
@@ -123,13 +167,30 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping (value = "/crud/instruments")
-    public ModelAndView crud(Authentication auth) {
+    public ModelAndView crud(Authentication auth,
+                             @RequestParam Map<String, Object> params) {
         ModelAndView modelAndView = new ModelAndView();
         try {
             modelAndView.setViewName("views/crud");
+            int page = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
+
+            PageRequest pageRequest = PageRequest.of(page,10);
+
+            Page<Instrument> pageInstrument = serviceInstrument.findAll(pageRequest);
+
+            int totalPage = pageInstrument.getTotalPages();                                                     //Total de paginas que tienen los datos de la base de datos(cuantos links se muestran)
+            if(totalPage > 0){
+                List<Integer> pages = IntStream.rangeClosed(1, totalPage).boxed().collect(Collectors.toList());   //Se crea un listado de numeros desde el 1 al numero final
+                modelAndView.addObject("pages", pages);
+            }
+
+            modelAndView.addObject("instruments", pageInstrument.getContent());
+            modelAndView.addObject("current", page + 1);                                        //Parametro para identificar la pagina actual
+            modelAndView.addObject("next", page + 2);
+            modelAndView.addObject("prev", page);
+            modelAndView.addObject("last", totalPage);
             User user = serviceUser.getUserAutenticated(auth);
             modelAndView.addObject("user", user);
-            modelAndView.addObject("instruments", serviceInstrument.findAll());
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;
             modelAndView.setViewName("error.html");

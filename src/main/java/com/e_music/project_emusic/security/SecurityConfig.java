@@ -41,7 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/images/**", "/", "/index", "/error", "/forbidden", "/users/login" , "/users/register", "/users/about", "/instruments/listAll", "/instruments/list/{id}","/instruments/details/{id}") //Url permitidas
+                .antMatchers("/images/**", "/", "/index", "/error", "/forbidden", "/users/login" , "/users/register", "/users/about", "/instruments/list/{id}","/instruments/details/{id}") //Url permitidas
+                .permitAll()
+                .regexMatchers("/instruments/listAll", "/instruments/list/")
                 .permitAll()
                 .antMatchers("/users/register") //Url de post para registro de usuarios
                 .permitAll()
