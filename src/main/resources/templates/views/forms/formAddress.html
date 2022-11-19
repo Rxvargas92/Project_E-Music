@@ -14,25 +14,27 @@
 
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="row d-flex h-100">
             <div class="card rounded-3 text-black" style="width: 100%">
-                <div class="card-body p-md-5 mx-md-4">
+                <div class="card-body p-md-4 mx-md-4">
 
                     <div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
                          th:text="${message}"
                          class="alert">
                     </div>
-                    <div class="container px-4 text-center">
-                        <form th:action="@{/addresses/formAddress/{id}(id=${instrument.id})}" method="post" th:object="${address}">
-                            <div class="row gx-5 justify-content-center">
-                                <div class="col text-center">
-                                    <div class="container"><h3> You are buying:</h3></div>
-                                    <div class="card mb-3" style="max-width: 540px;" >
-                                        <div class="row g-0 text-center" th:object="${instrument}">
-                                            <div class="col-md-4">
-                                                <img th:src="@{'/images/'} + *{pathImage}" class="img-fluid" alt="instrument image">
+                    <div class="px-4 text-center">
+                        <form th:action="@{/addresses/formAddress/{id}(id=${instrument.id})}" method="post"
+                              th:object="${address}">
+                            <div class="row gx-5 ">
+                                <div class="col align-items-center">
+                                    <div class=""><h3> You are buying:</h3></div>
+                                    <div class="card mb-3 " style="height: 90%;">
+                                        <div class="row g-0" th:object="${instrument}">
+                                            <div class="col">
+                                                <img th:src="@{'/images/'} + *{pathImage}" class="img-fluid"
+                                                     alt="instrument image">
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col">
                                                 <div class="card-body">
                                                     <h4 class="card-title" th:text="*{name}"></h4>
                                                     <ul class="list-group list-group-flush">
@@ -46,50 +48,63 @@
 
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="text-center"><h5 > Load your address</h5></div>
+                                <div class="col d-flex flex-column align-items-center justify-content-center">
+                                    <h5> Load your address</h5>
 
-                                    <div class="justify-content-center">
-                                        <div th:object="${instrument}"></div>
-                                        <!-- control ataque csrf -->
-                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-                                        <!-- fin control ataque csrf -->
-                                        <div class="col-md-6 form-group">
-                                            <label for="street" class="form-label">Street</label>
-                                            <input type="text" class="form-control" id="street" th:field="*{street}">
-                                            <div class="text-danger" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="number" class="form-label">Number</label>
-                                            <input type="number" class="form-control" id="number" th:field="*{number}">
-                                            <div class="text-danger" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="location" class="form-label">Location</label>
-                                            <input type="text" class="form-control" id="location" th:field="*{location}">
-                                            <div class="text-danger" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="province" class="form-label">Province</label>
-                                            <input type="text" class="form-control" id="province" th:field="*{province}">
-                                            <div class="text-danger" th:if="${#fields.hasErrors('province')}" th:errors="*{province}"></div>
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="postalCode" class="form-label">Postal Code</label>
-                                            <input type="number" class="form-control" id="postalCode" th:field="*{postalCode}">
-                                            <div class="text-danger" th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}"></div>
-                                        </div>
+                                    <div th:object="${instrument}"></div>
+                                    <!-- control ataque csrf -->
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                                    <!-- fin control ataque csrf -->
+                                    <div cclass="form-group" style="margin-bottom: 0; flex: 0 0 0; width: 90%">
+                                        <label for="street" class="form-label">Street</label>
+                                        <input type="text" class="form-control" id="street" th:field="*{street}">
+                                        <div class="text-danger" th:if="${#fields.hasErrors('street')}"
+                                             th:errors="*{street}"></div>
                                     </div>
-                                    <div class="col-12 mt-3 form-group">
-                                        <button class="btn mx-2" type="submit" style="background-color: #02AC66; color: #FFFFFF; font-weight: 600 ">Confirm</button>
-                                        <button class="btn mx-2" type="reset" style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest form</button>
-                                        <button class="btn mx-2" th:href="@{/}" style="background-color: #EF280F; color: #FFFFFF; font-weight: 600 ">Back to Top</button>
+                                    <div class="form-group" style="margin-bottom: 0; flex: 0 0 0; width: 90%">
+                                        <label for="number" class="form-label">Number</label>
+                                        <input type="number" class="form-control" id="number" th:field="*{number}">
+                                        <div class="text-danger" th:if="${#fields.hasErrors('number')}"
+                                             th:errors="*{number}"></div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0; flex: 0 0 0; width: 90%">
+                                        <label for="location" class="form-label">Location</label>
+                                        <input type="text" class="form-control" id="location" th:field="*{location}">
+                                        <div class="text-danger" th:if="${#fields.hasErrors('location')}"
+                                             th:errors="*{location}"></div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0; flex: 0 0 0; width: 90% ">
+                                        <label for="province" class="form-label">Province</label>
+                                        <input type="text" class="form-control" id="province" th:field="*{province}">
+                                        <div class="text-danger" th:if="${#fields.hasErrors('province')}"
+                                             th:errors="*{province}"></div>
+                                    </div>
+                                    <div class="form-group" style="margin-bottom: 0; flex: 0 0 0;width: 90%">
+                                        <label for="postalCode" class="form-label">Postal Code</label>
+                                        <input type="number" class="form-control" id="postalCode"
+                                               th:field="*{postalCode}">
+                                        <div class="text-danger" th:if="${#fields.hasErrors('postalCode')}"
+                                             th:errors="*{postalCode}"></div>
                                     </div>
                                 </div>
+                                <div class="col-12 mt-5 form-group">
+                                    <button class="btn mx-2" type="submit"
+                                            style="background-color: #02AC66; color: #FFFFFF; font-weight: 600 ">Confirm
+                                    </button>
+                                    <button class="btn mx-2" type="reset"
+                                            style="background-color: #8C30F5; color: #FFFFFF; font-weight: 600 ">Rest
+                                        form
+                                    </button>
+                                    <button class="btn mx-2" th:href="@{/}"
+                                            style="background-color: #EF280F; color: #FFFFFF; font-weight: 600 ">Back to
+                                        Top
+                                    </button>
+                                </div>
                             </div>
+
                         </form>
-<!--                        <a th:href="@{/instruments/details/{id}(id=${id})}" style="text-decoration: none;"><button class="btn btn-outline-info">-->
-<!--                            <i class="fas fa-arrow-circle-left"></i> Volver</button></a>-->
+                        <!--                        <a th:href="@{/instruments/details/{id}(id=${id})}" style="text-decoration: none;"><button class="btn btn-outline-info">-->
+                        <!--                            <i class="fas fa-arrow-circle-left"></i> Volver</button></a>-->
                     </div>
 
                 </div>
@@ -97,8 +112,6 @@
         </div>
     </div>
 </section>
-
-
 
 
 <nav th:replace="components/footer :: _footer"></nav>
