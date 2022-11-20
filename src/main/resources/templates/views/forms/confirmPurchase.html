@@ -19,7 +19,7 @@
 <div class="container px-4 text-center">
   <form class="row g-3" th:action="@{/address/formAddress}" method="post" th:object="${cartDTO}">
     <!-- control ataque csrf -->
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+<!--    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
     <!-- fin control ataque csrf -->
     <div class="row gx-5">
       <div class="col">

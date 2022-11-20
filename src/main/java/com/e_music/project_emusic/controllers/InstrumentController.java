@@ -131,7 +131,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/viewInstrument/{id}")
     public ModelAndView detailsCrud(@PathVariable("id") long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -146,7 +146,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping (value = "/crud/instruments")
     public ModelAndView crud(Authentication auth,
                              @RequestParam Map<String, Object> params) {
@@ -179,7 +179,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formInstrument")
     public ModelAndView saveInstrument(){
         ModelAndView modelAndView = new ModelAndView();
@@ -200,7 +200,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formInstrument")
     public ModelAndView saveInstrument(
             @RequestParam("file") MultipartFile archive,
@@ -252,7 +252,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formInstrument/{id}")
     public ModelAndView editInstrument(@PathVariable("id")long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -272,7 +272,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formInstrument/{id}")
     public ModelAndView editInstrument(
             @RequestParam(value = "file") MultipartFile archive,
@@ -321,7 +321,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/delete/{id}")
     public ModelAndView deleteFormInstrument(@PathVariable("id")long id){
         ModelAndView modelAndView = new ModelAndView();
@@ -336,7 +336,7 @@ public class InstrumentController extends BaseControllerImpl< Instrument, Servic
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/delete/{id}")
     public ModelAndView deleteInstrument(@ModelAttribute("instrument") Instrument instrument, @PathVariable("id")long id, RedirectAttributes redirectAttributes){
         ModelAndView modelAndView = new ModelAndView();

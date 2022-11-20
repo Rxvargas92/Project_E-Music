@@ -20,7 +20,7 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
     @Autowired
     private ServiceCategory serviceCategory;
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formCategory")
     public ModelAndView formCategory(){
         ModelAndView modelAndView = new ModelAndView();
@@ -34,7 +34,7 @@ public class CategoryController extends BaseControllerImpl<Category, ServiceCate
         return modelAndView;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formCategory")
     public ModelAndView saveCategory(@ModelAttribute("category") Category category, RedirectAttributes redirectAttributes) throws Exception {
         ModelAndView modelAndView = new ModelAndView();

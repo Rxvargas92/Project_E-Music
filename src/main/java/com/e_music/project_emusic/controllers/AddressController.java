@@ -36,7 +36,7 @@ public class AddressController extends BaseControllerImpl<Address, ServiceAddres
     @Autowired
     private ServiceCart serviceCart;
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/formAddress/{id}")
     public ModelAndView formAddress(@PathVariable("id")long id,
                                     RedirectAttributes redirectAttributes,
@@ -60,7 +60,7 @@ public class AddressController extends BaseControllerImpl<Address, ServiceAddres
         return modelAndView;
 
     }
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @PostMapping(value = "/formAddress/{id}")
     public ModelAndView formAddressPost(@PathVariable("id")long id,
                                         @Valid @ModelAttribute("address") Address address,

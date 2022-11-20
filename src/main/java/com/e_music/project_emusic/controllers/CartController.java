@@ -67,7 +67,7 @@ public class CartController extends BaseControllerImpl<Cart, ServiceCartImpl> {
         return modelAndView;
     }*/
 
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/confirmedPurchase")
     public ModelAndView confirmedPurchase(){
         ModelAndView modelAndView = new ModelAndView();

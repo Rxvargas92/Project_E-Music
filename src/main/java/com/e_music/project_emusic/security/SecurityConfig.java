@@ -38,8 +38,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(serviceMyUserDetails).passwordEncoder(passwordEncoder());
     }
 
-    @Override
+    /*@Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
                 .antMatchers("/images/**", "/", "/index", "/error", "/forbidden", "/users/login" , "/users/register", "/users/about", "/instruments/list/{id}","/instruments/details/{id}", "/instruments/listAllInstruments**", "/instruments/list/**") //Url permitidas
                 .permitAll()
@@ -61,5 +62,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .and()
                 .rememberMe().tokenValiditySeconds(3600000).key("secret").rememberMeParameter("checkRememberMe");
+    }*/
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .anyRequest()
+                .permitAll();
     }
 }
