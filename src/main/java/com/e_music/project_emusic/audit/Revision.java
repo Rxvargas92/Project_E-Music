@@ -1,26 +1,14 @@
 package com.e_music.project_emusic.audit;
 
-import java.io.Serializable;
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import com.e_music.project_emusic.config.CustomRevisionListener;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
 
-import com.e_music.project_emusic.config.CustomRevisionListener;
-import lombok.Data;
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity

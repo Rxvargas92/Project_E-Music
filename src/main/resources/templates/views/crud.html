@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/e7cd538d8b.js" crossorigin="anonymous"></script>
+
+  <title>CRUD</title>
+</head>
+<body>
+<nav th:replace="components/navbar :: nav_bar"></nav>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-3" th:object="${user}">
+      <h5 class="modal-title" th:text="'Hello '+ *{email}+' !'"></h5>
+      <h5 class="modal-title">CRUD Instruments</h5>
+    </div>
+  </div>
+  <div class="row py-5">
+    <div class="col-12">
+      <div th:classappend="'alert-' + (${class != null} ? ${class} : info)" th:if="${message != null}"
+           th:text="${message}"
+           class="alert">
+      </div>
+      <table class="table table-light-bordered text-center">
+        <thead class="table-light">
+        <tr>
+          <th scope="col">
+            <a th:href="@{/instruments/crud/formInstrument}">
+              <button class="btn btn-outline-success btn-lg">
+                <i class="fas fa-plus-circle"></i> New Instrument</button></a>
+          </th>
+          <th scope="col">
+            <a th:href="@{/categories/crud/formCategory}">
+              <button class="btn btn-outline-success btn-lg">
+                <i class="fas fa-plus-circle"></i> Categories </button></a>
+          </th>
+          <th scope="col">
+            <a th:href="@{/brands/crud/formBrand}">
+              <button class="btn btn-outline-success btn-lg">
+                <i class="fas fa-plus-circle"></i> Brands </button></a>
+          </th>
+        </tr>
+        </thead>
+      </table>
+      <table class="table table-light-bordered text-center">
+        <thead class="table-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Brand</th>
+          <th scope="col">Category</th>
+          <th scope="col">Active</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="instrument : ${instruments}" th:classappend="${instrument.active} ? table-success : table-danger">
+          <td th:text="${instrument.name}"></td>
+          <td th:text="${instrument.price}">Test</td>
+          <td th:text="${instrument.stock}">Test</td>
+          <td th:text="${instrument.brand.name}">Test</td>
+          <td th:text="${instrument.category.name}">Test</td>
+          <td th:if="*{instrument.active==true}" th:text="Yes">Test</td>
+          <td th:if="*{instrument.active==false}" th:text="No">Test</td>
+          <td class="table-active"><a th:href="@{/instruments/crud/viewInstrument/{id}(id=${instrument.id})}" ><button class="btn btn-outline-primary"><i class="far fa-eye"></i></button></a></td>
+          <td class="table-active"><a th:href="@{/instruments/crud/formInstrument/{id}(id=${instrument.id})}"><button class="btn btn-outline-warning"><i class="far fa-edit"></i></button></a></td>
+          <td class="table-active"><a th:href="@{/instruments/crud/delete/{id}(id=${instrument.id})}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>
+
+        </tr>
+        </tbody>
+      </table>
+      <div th:replace="components/pagination :: paginationCrud">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav th:replace="components/footer :: _footer"></nav>
+
+</body>
+</html>

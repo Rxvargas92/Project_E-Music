@@ -1,19 +1,45 @@
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <nav th:fragment="nav_bar" class="navbar navbar-expand-lg bg-light navbar-light">
   <div class="container">
     <div class="container-fluid">
-      <a class="navbar-brand" th:href="@{/start}">E-Music</a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse d-flex " id="navbarSupportedContent">
+        <object data="https://stackoverflow.com/does-not-exist.png" type="image/png">
+          <a class="navbar-brand" th:href="@{/}">
+            <img class="mx-1" src="https://cdn.icon-icons.com/icons2/660/PNG/512/guitar-pick_icon-icons.com_60082.png" width="35" height="35" alt=""><b>E-Music</b></a>
+        </object>
+
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" th:href="@{/start}">Home</a>
+            <a class="nav-link active" aria-current="page" href="/users/about">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/crud}">Crud</a>
+
+
+          <li class="nav-item" sec:authorize="isAuthenticated() && hasRole('ROLE_ADMIN')">
+            <div class="dropdown">
+              <a class="btn btn-light" type="button"  th:href="@{/instruments/crud/instruments}">
+                Crud
+              </a>
+
+            </div>
           </li>
         </ul>
-        <form class="d-flex" role="search" th:action="@{/search}">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex ml-auto" role="search" action="#!" sec:authorize="!isAuthenticated()">
+
+          <a href="/users/login" >
+            <button class="btn mx-2" type="button" style="background-color: #F1E4FF; color: #8C30F5; font-weight: 600 ">Login</button>
+          </a>
+
+          <a href="/users/register">
+          <button class="btn " type="button"  style="background-color: #8C30F5; color: white; font-weight: 600">Sign up</button>
+          </a>
+
+        </form>
+        <form sec:authorize="isAuthenticated()" class="d-flex ml-auto" th:action="@{/logout}" method="post">
+          <button class="btn btn-outline-danger mx-2" type="submit">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
         </form>
       </div>
     </div>

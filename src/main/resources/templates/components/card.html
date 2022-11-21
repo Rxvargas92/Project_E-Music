@@ -1,10 +1,12 @@
-<div th:fragment="_card" class="card my-2">
-    <img th:src="${game.path_img}" class="card-img-top" alt="game image" src="">
-    <div class="card-body">
-        <h5 th:text="${game.title}" class="card-title"></h5>
-        <p th:text="${game.description}" class="card-text"></p>
-        <p class="card-text">Precio : <span th:text="${game.price}"></span></p>
-        <a th:href="@{detail/{id}(id=${game.id})}" class="btn btn-light">View details</a>
+<div th:fragment="_card" class="card my-2" style=" box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);
+-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.28);">
+    <div class="row g-0 text-center" >
+        <img th:src="@{'/images/'} + ${instrument.pathImage}" class="img-fluid" alt="instrument image" width="200px">
+        <h4 class="card-title" th:text="${instrument.name}"></h4>
+        <h6 class="card-title">Price <span th:text="${instrument.price}"></span>$</h6>
+        <a th:href="@{/instruments/details/{id}(id=${instrument.id})}" class="btn btn-light">View
+            details</a>
     </div>
 </div>
 

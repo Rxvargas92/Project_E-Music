@@ -19,15 +19,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Cart extends Base {
 
-  @Column(name = "paymentMethod")
+  @Column(name = "payment_method")
   private String payment_method;
 
   @Column(name = "total_price")
   private Double total_price;
-
-  @Column(name = "active")
-  private boolean active;
-
 
   @OneToOne(fetch = FetchType.EAGER)
   @JsonManagedReference
