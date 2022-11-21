@@ -1,24 +1,17 @@
 package com.e_music.project_emusic.controllers;
 
-import com.e_music.project_emusic.entities.Address;
 import com.e_music.project_emusic.entities.Cart;
-import com.e_music.project_emusic.entities.DTOs.CartDTO;
-import com.e_music.project_emusic.entities.Instrument;
-import com.e_music.project_emusic.entities.User;
-import com.e_music.project_emusic.services.*;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.e_music.project_emusic.services.ServiceCart;
+import com.e_music.project_emusic.services.ServiceCartImpl;
+import com.e_music.project_emusic.services.ServiceInstrument;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 @Slf4j
 @RestController
@@ -67,7 +60,7 @@ public class CartController extends BaseControllerImpl<Cart, ServiceCartImpl> {
         return modelAndView;
     }*/
 
-//    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @GetMapping(value = "/confirmedPurchase")
     public ModelAndView confirmedPurchase(){
         ModelAndView modelAndView = new ModelAndView();

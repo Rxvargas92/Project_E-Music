@@ -1,20 +1,18 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
-import javax.persistence.*;
-import javax.validation.constraints.Digits;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.beans.XMLEncoder;
-import java.util.List;
 
 @Entity
 @Table ( name = "ADDRESS" )

@@ -1,16 +1,15 @@
 package com.e_music.project_emusic.services;
 
-import com.e_music.project_emusic.entities.*;
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.e_music.project_emusic.repositories.RepositoryBase;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import javax.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import javax.transaction.Transactional;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 public abstract class ServiceBaseImpl<E extends Base, ID extends Serializable>

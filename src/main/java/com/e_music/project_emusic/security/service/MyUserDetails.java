@@ -2,9 +2,6 @@ package com.e_music.project_emusic.security.service;
 
 
 import com.e_music.project_emusic.entities.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

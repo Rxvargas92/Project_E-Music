@@ -1,23 +1,17 @@
 package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
-import com.e_music.project_emusic.security.service.MyUserDetails;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
-import org.springframework.security.core.Authentication;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -58,7 +52,7 @@ public class User extends Base {
   @Column(name = "email", unique = true)
   private String email;
 
-  @NotNull(message = "Password cannot be null")
+  @NotEmpty(message = "Password cannot be empty")
   @Column(name = "password")
   private String password;
 

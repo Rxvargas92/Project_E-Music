@@ -19,7 +19,7 @@
 
           <form th:action="@{/instruments/crud/formInstrument/{id}(id=${instrument.id})}" method="post" th:object="${instrument}" enctype="multipart/form-data">
             <!-- control ataque csrf -->
-<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
             <!-- fin control ataque csrf -->
             <div class="form-group">
               <label for="name"><b>NAME: </b></label>

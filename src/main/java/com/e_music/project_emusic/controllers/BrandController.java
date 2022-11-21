@@ -20,7 +20,7 @@ public class BrandController extends BaseControllerImpl<Brand, ServiceBrandImpl>
     @Autowired
     private ServiceBrand serviceBrand;
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/crud/formBrand")
     public ModelAndView formCategory(){
         ModelAndView modelAndView = new ModelAndView();
@@ -34,7 +34,7 @@ public class BrandController extends BaseControllerImpl<Brand, ServiceBrandImpl>
         return modelAndView;
     }
 
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(value = "/crud/formBrand")
     public ModelAndView saveCategory(@ModelAttribute("brand") Brand brand, RedirectAttributes redirectAttributes) throws Exception {
         ModelAndView modelAndView = new ModelAndView();

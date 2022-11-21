@@ -1,7 +1,5 @@
 package com.e_music.project_emusic.config;
 
-import com.e_music.project_emusic.entities.Rol;
-import com.e_music.project_emusic.enums.RolName;
 import com.e_music.project_emusic.services.ServiceRol;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,14 +1,12 @@
 package com.e_music.project_emusic.controllers;
 
+import com.e_music.project_emusic.entities.Address;
 import com.e_music.project_emusic.entities.Cart;
-import com.e_music.project_emusic.entities.DTOs.CartDTO;
 import com.e_music.project_emusic.entities.Instrument;
 import com.e_music.project_emusic.entities.User;
 import com.e_music.project_emusic.services.*;
-import com.e_music.project_emusic.entities.Address;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

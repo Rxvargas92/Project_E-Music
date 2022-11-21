@@ -2,7 +2,6 @@ package com.e_music.project_emusic.repositories;
 
 import com.e_music.project_emusic.entities.Rol;
 import com.e_music.project_emusic.enums.RolName;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 

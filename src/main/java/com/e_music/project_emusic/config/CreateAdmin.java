@@ -1,10 +1,5 @@
 package com.e_music.project_emusic.config;
 
-import com.e_music.project_emusic.entities.Address;
-import com.e_music.project_emusic.entities.Cart;
-import com.e_music.project_emusic.entities.Rol;
-import com.e_music.project_emusic.entities.User;
-import com.e_music.project_emusic.enums.RolName;
 import com.e_music.project_emusic.services.ServiceAddress;
 import com.e_music.project_emusic.services.ServiceCart;
 import com.e_music.project_emusic.services.ServiceRol;
@@ -12,13 +7,8 @@ import com.e_music.project_emusic.services.ServiceUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.auditing.config.AuditingBeanDefinitionRegistrarSupport;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Service
 @Slf4j

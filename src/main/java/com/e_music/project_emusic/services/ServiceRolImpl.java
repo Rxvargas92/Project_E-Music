@@ -1,7 +1,6 @@
 package com.e_music.project_emusic.services;
 
 import com.e_music.project_emusic.entities.Rol;
-import com.e_music.project_emusic.entities.User;
 import com.e_music.project_emusic.enums.RolName;
 import com.e_music.project_emusic.repositories.RepositoryBase;
 import com.e_music.project_emusic.repositories.RepositoryRol;

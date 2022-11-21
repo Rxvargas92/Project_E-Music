@@ -1,23 +1,17 @@
 package com.e_music.project_emusic.controllers;
 
-import com.e_music.project_emusic.entities.Address;
-import com.e_music.project_emusic.entities.Instrument;
 import com.e_music.project_emusic.entities.Rol;
-import com.e_music.project_emusic.enums.RolName;
-import com.e_music.project_emusic.security.service.MyUserDetails;
 import com.e_music.project_emusic.entities.User;
+import com.e_music.project_emusic.enums.RolName;
 import com.e_music.project_emusic.services.ServiceAddress;
 import com.e_music.project_emusic.services.ServiceRol;
 import com.e_music.project_emusic.services.ServiceUser;
 import com.e_music.project_emusic.services.ServiceUserImpl;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -96,18 +90,6 @@ public class UserController extends BaseControllerImpl<User, ServiceUserImpl>{
         ModelAndView modelAndView = new ModelAndView();
         try {
             modelAndView.setViewName("views/forms/login");
-        } catch (Exception e) {
-            log.info(e.getMessage(),e) ;
-            modelAndView.setViewName("error.html");
-        }
-        return modelAndView;
-    }
-
-    @GetMapping (value = "/admin_menu")
-    public ModelAndView admin_menu( Model model) {
-        ModelAndView modelAndView = new ModelAndView();
-        try {
-            modelAndView.setViewName("views/admin_menu.html");
         } catch (Exception e) {
             log.info(e.getMessage(),e) ;
             modelAndView.setViewName("error.html");

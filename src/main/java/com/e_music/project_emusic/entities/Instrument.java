@@ -2,24 +2,14 @@ package com.e_music.project_emusic.entities;
 
 import com.e_music.project_emusic.entities.abstractions.Base;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-import javax.persistence.*;
-
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
-
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.util.List;
 
 
 @Entity
